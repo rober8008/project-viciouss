@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B3581AEB-DB94-4CAC-9A8B-3C89B9838146}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ctaSERVICES</RootNamespace>
+    <AssemblyName>ctaSERVICES</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="MercadoPago, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mercadopago-sdk.1.0.54\lib\net35\MercadoPago.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="ObjectDumper, Version=1.0.0.12, Culture=neutral, PublicKeyToken=9e2fabf3af85dba9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObjectDumper.1.0.0.12\lib\net35-Client\ObjectDumper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigService.cs" />
+    <Compile Include="ContactService.cs" />
+    <Compile Include="DashboardService.cs" />
+    <Compile Include="HeaderService.cs" />
+    <Compile Include="HolidayService.cs" />
+    <Compile Include="MarketIndexService.cs" />
+    <Compile Include="MarketIndexStockService.cs" />
+    <Compile Include="MarketService.cs" />
+    <Compile Include="MercadoPagoNotificationService.cs" />
+    <Compile Include="MoreLinq\MoreEnumerable.Batch.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuotesProvider\BOLSARINDEXQuotesProvider.cs" />
+    <Compile Include="QuotesProvider\BOLSARQuotesProvider.cs" />
+    <Compile Include="QuotesProvider\CSVQuotesProvider.cs" />
+    <Compile Include="QuotesProvider\EODQuotesProvider.cs" />
+    <Compile Include="QuotesProvider\QuotesProvider.cs" />
+    <Compile Include="QuotesService.cs" />
+    <Compile Include="Reporting\Indicator_Calculator.cs" />
+    <Compile Include="Reporting\ReportData_Generator.cs" />
+    <Compile Include="Reporting\ReportData_Retriever.cs" />
+    <Compile Include="Reporting\ReportService.cs" />
+    <Compile Include="ReportService.cs" />
+    <Compile Include="ReportTypeService.cs" />
+    <Compile Include="SearchResultCategoryUser.cs" />
+    <Compile Include="SearchResultSymbol.cs" />
+    <Compile Include="StockQuoteService.cs" />
+    <Compile Include="StockService.cs" />
+    <Compile Include="StockTypeService.cs" />
+    <Compile Include="TaskManagerService.cs" />
+    <Compile Include="TaskManager\VcssTaskManagerClearIntradiary.cs" />
+    <Compile Include="TaskManager\VcssTaskManagerHistory.cs" />
+    <Compile Include="TaskManager\VcssTaskManagerService.cs" />
+    <Compile Include="TaskManager\VcssTaskManagerDailyTechnicalReportARG.cs" />
+    <Compile Include="TenantsService.cs" />
+    <Compile Include="UserService.cs" />
+    <Compile Include="ValidationService.cs" />
+    <Compile Include="TaskManager\VcssTaskManager.cs" />
+    <Compile Include="TaskManager\VcssTaskManagerAuthTokenBCBA.cs" />
+    <Compile Include="TaskManager\VcssTaskManagerIntradiary.cs" />
+    <Compile Include="TaskManager\VcssTaskManagerIntradiaryBCBA.cs" />
+    <Compile Include="TaskManager\VcssTaskManagerIntradiaryBCBAINDEX.cs" />
+    <Compile Include="TaskManager\VcssTaskManagerIntradiaryNASDAQ.cs" />
+    <Compile Include="TaskManager\VcssTaskManagerIntradiaryNYSE.cs" />
+    <Compile Include="YahooStockQuoteAPI.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ctaCOMMON\ctaCOMMON.csproj">
+      <Project>{851e5979-8e57-4d28-a671-2864ab1168e2}</Project>
+      <Name>ctaCOMMON</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ctaDATAMODEL\ctaDATAMODEL.csproj">
+      <Project>{b1904e64-bb33-4889-84fd-8787f78b9bd1}</Project>
+      <Name>ctaDATAMODEL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ctaMEMBERSHIP\ctaMEMBERSHIP.csproj">
+      <Project>{4e6c33f3-a619-4bfe-b8d6-e3124317fe23}</Project>
+      <Name>ctaMEMBERSHIP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.10.1\build\NUnit.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

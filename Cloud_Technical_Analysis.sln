@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ctaWEB", "ctaWEB\ctaWEB.csproj", "{D8F57B3D-CE23-48A4-AD97-BD8CAFE3B836}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ctaCOMMON", "ctaCOMMON\ctaCOMMON.csproj", "{851E5979-8E57-4D28-A671-2864AB1168E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ctaDATAMODEL", "ctaDATAMODEL\ctaDATAMODEL.csproj", "{B1904E64-BB33-4889-84FD-8787F78B9BD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ctaMEMBERSHIP", "ctaMEMBERSHIP\ctaMEMBERSHIP.csproj", "{4E6C33F3-A619-4BFE-B8D6-E3124317FE23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ctaSERVICES", "ctaSERVICES\ctaSERVICES.csproj", "{B3581AEB-DB94-4CAC-9A8B-3C89B9838146}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ctaWindowsService", "ctaWindowsService\ctaWindowsService.csproj", "{E3A381AA-957E-4283-B120-F0715EF00F11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8F57B3D-CE23-48A4-AD97-BD8CAFE3B836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8F57B3D-CE23-48A4-AD97-BD8CAFE3B836}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8F57B3D-CE23-48A4-AD97-BD8CAFE3B836}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8F57B3D-CE23-48A4-AD97-BD8CAFE3B836}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{851E5979-8E57-4D28-A671-2864AB1168E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{851E5979-8E57-4D28-A671-2864AB1168E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{851E5979-8E57-4D28-A671-2864AB1168E2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{851E5979-8E57-4D28-A671-2864AB1168E2}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{B1904E64-BB33-4889-84FD-8787F78B9BD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1904E64-BB33-4889-84FD-8787F78B9BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1904E64-BB33-4889-84FD-8787F78B9BD1}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1904E64-BB33-4889-84FD-8787F78B9BD1}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{4E6C33F3-A619-4BFE-B8D6-E3124317FE23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E6C33F3-A619-4BFE-B8D6-E3124317FE23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E6C33F3-A619-4BFE-B8D6-E3124317FE23}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E6C33F3-A619-4BFE-B8D6-E3124317FE23}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{B3581AEB-DB94-4CAC-9A8B-3C89B9838146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3581AEB-DB94-4CAC-9A8B-3C89B9838146}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3581AEB-DB94-4CAC-9A8B-3C89B9838146}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3581AEB-DB94-4CAC-9A8B-3C89B9838146}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{E3A381AA-957E-4283-B120-F0715EF00F11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3A381AA-957E-4283-B120-F0715EF00F11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3A381AA-957E-4283-B120-F0715EF00F11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3A381AA-957E-4283-B120-F0715EF00F11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0DF03580-95AB-489A-9B8D-A102DFDA1FD1}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://amedriveroperez.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ctaCOMMON\\ctaCOMMON.csproj
+		SccProjectName1 = ctaCOMMON
+		SccLocalPath1 = ctaCOMMON
+		SccProjectUniqueName2 = ctaDATAMODEL\\ctaDATAMODEL.csproj
+		SccProjectName2 = ctaDATAMODEL
+		SccLocalPath2 = ctaDATAMODEL
+		SccProjectUniqueName3 = ctaMEMBERSHIP\\ctaMEMBERSHIP.csproj
+		SccProjectName3 = ctaMEMBERSHIP
+		SccLocalPath3 = ctaMEMBERSHIP
+		SccProjectUniqueName4 = ctaSERVICES\\ctaSERVICES.csproj
+		SccProjectName4 = ctaSERVICES
+		SccLocalPath4 = ctaSERVICES
+		SccProjectUniqueName5 = ctaWEB\\ctaWEB.csproj
+		SccProjectName5 = ctaWEB
+		SccLocalPath5 = ctaWEB
+		SccProjectUniqueName6 = ctaWindowsService\\ctaWindowsService.csproj
+		SccProjectName6 = ctaWindowsService
+		SccLocalPath6 = ctaWindowsService
+	EndGlobalSection
+EndGlobal

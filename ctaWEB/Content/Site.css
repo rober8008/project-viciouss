@@ -1,0 +1,22 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.navbar {
+    min-height:0px;
+}
+.limit-left-content-20 {
+    padding-left: 20px;    
+}
+.limit-right-content-20 {   
+    padding-right: 20px;
+}

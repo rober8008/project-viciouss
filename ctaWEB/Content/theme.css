@@ -1,0 +1,63 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+  display: block;
+  position: static;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
+.portfolio-symbol-title {
+    font-size: x-large;
+}
+
+.portfolio-symbol-name {
+    font-size: medium;
+}
+
+.portfolio-symbol-field-title{
+    font-size: smaller;
+}
+
+.portfolio-symbol-field-main-value{
+    font-size: small;
+}
+
+.portfolio-symbol-field-value{
+    font-weight: bold;    
+}
+
+.black {
+    color: black;
+}
+
+.blue {
+    color: rgb(56,182,189);
+}
+
+.red {
+    color: rgb(214,64,59);
+}
+
+.green {
+    color: rgb(69,203,130);
+}
+
+.delete-indicator, .delete-shape {
+    cursor: pointer;    
+}
+
+.delete-indicator:hover, .delete-shape:hover {
+    cursor: pointer;
+    color: rgb(20,112,99);
+}
+
+.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content.ui-corner-all {
+    z-index: 9999 !important;
+}

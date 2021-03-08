@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{851E5979-8E57-4D28-A671-2864AB1168E2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ctaCOMMON</RootNamespace>
+    <AssemblyName>ctaCOMMON</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminModel\ConfigModel.cs" />
+    <Compile Include="AdminModel\HolidayModel.cs" />
+    <Compile Include="AdminModel\MercadoPagoNotificationModel.cs" />
+    <Compile Include="AdminModel\ReportModel.cs" />
+    <Compile Include="AdminModel\ReportTypeModel.cs" />
+    <Compile Include="AdminModel\TaskModel.cs" />
+    <Compile Include="AdminModel\TenantModel.cs" />
+    <Compile Include="AdminModel\TenantTypeModel.cs" />
+    <Compile Include="AdminModel\VcssTaskInfoModel.cs" />
+    <Compile Include="AdminModel\VcssTaskModel.cs" />
+    <Compile Include="Dashboard\DashboardReport.cs" />
+    <Compile Include="DataParser\jsonmdlBOLSARIndex.cs" />
+    <Compile Include="DataParser\jsonmdlBOLSARRealTime.cs" />
+    <Compile Include="DataParser\jsonmdlEODHistorical.cs" />
+    <Compile Include="DataParser\jsonmdlEODRealTime.cs" />
+    <Compile Include="AdminModel\MarketIndexModel.cs" />
+    <Compile Include="AdminModel\MarketIndexStockModel.cs" />
+    <Compile Include="AdminModel\StockQuoteModel.cs" />
+    <Compile Include="AdminModel\MarketModel.cs" />
+    <Compile Include="AdminModel\StockModel.cs" />
+    <Compile Include="AdminModel\StockTypeModel.cs" />
+    <Compile Include="Charts\Candel.cs" />
+    <Compile Include="Charts\Chart.cs" />
+    <Compile Include="Charts\SymbolIntradiaryInfo.cs" />
+    <Compile Include="CTADynamicObject.cs" />
+    <Compile Include="Dashboard\DashboardItem.cs" />
+    <Compile Include="Dashboard\UserDashboard.cs" />
+    <Compile Include="EmailSender.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Indicator\BoolingerBands.cs" />
+    <Compile Include="Indicator\Chart_Indicator_Builder.cs" />
+    <Compile Include="Indicator\CoefCorr.cs" />
+    <Compile Include="Indicator\CruceMedias.cs" />
+    <Compile Include="Indicator\EMA.cs" />
+    <Compile Include="Indicator\Chart_Indicator.cs" />
+    <Compile Include="Indicator\FibbonacciArcsHigh.cs" />
+    <Compile Include="Indicator\FibbonacciArcsLow.cs" />
+    <Compile Include="Indicator\FibbonacciLinesHigh.cs" />
+    <Compile Include="Indicator\FibbonacciLinesLow.cs" />
+    <Compile Include="Indicator\Indicator.cs" />
+    <Compile Include="Indicator\IndicatorParameter.cs" />
+    <Compile Include="Indicator\Line.cs" />
+    <Compile Include="Indicator\MACD.cs" />
+    <Compile Include="Indicator\MA.cs" />
+    <Compile Include="Indicator\Momentum.cs" />
+    <Compile Include="Indicator\OBV.cs" />
+    <Compile Include="Indicator\Poligone.cs" />
+    <Compile Include="Indicator\ROC.cs" />
+    <Compile Include="Indicator\RSI.cs" />
+    <Compile Include="Indicator\Shape_Indicator.cs" />
+    <Compile Include="Indicator\Shape_Indicator_Builder.cs" />
+    <Compile Include="Indicator\StochasticOscillatorFast.cs" />
+    <Compile Include="Indicator\StochasticOscillatorSlow.cs" />
+    <Compile Include="Indicator\Text.cs" />
+    <Compile Include="Indicator\Volume.cs" />
+    <Compile Include="Indicator\VolumeOscillator.cs" />
+    <Compile Include="Indicator\WilliansR.cs" />
+    <Compile Include="Interface\IHistoricalQuote.cs" />
+    <Compile Include="Interface\IRealTimeQuote.cs" />
+    <Compile Include="Interface\ISimplifiedSearchCategoryUserResult.cs" />
+    <Compile Include="Interface\ISimplifiedSearchSymbolResult.cs" />
+    <Compile Include="IntradiaryData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Charts\Serie.cs" />
+    <Compile Include="Charts\Symbol.cs" />
+    <Compile Include="Charts\SerieValue.cs" />
+    <Compile Include="Dashboard\SymbolDashboard.cs" />
+    <Compile Include="Quotes\HistoricalQuoteBOLSAR.cs" />
+    <Compile Include="Quotes\HistoricalQuoteDBModel.cs" />
+    <Compile Include="Quotes\HistoricalQuoteEOD.cs" />
+    <Compile Include="Quotes\RealTimeQuoteBOLSAR.cs" />
+    <Compile Include="Quotes\HistoricalQuoteCSV.cs" />
+    <Compile Include="Quotes\RealTimeQuoteDBModel.cs" />
+    <Compile Include="Quotes\RealTimeQuoteEOD.cs" />
+    <Compile Include="SimplifiedSymbolQuotes.cs" />
+    <Compile Include="VcssScheduleTaskResult.cs" />
+    <Compile Include="vssJSON.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ctaDATAMODEL\ctaDATAMODEL.csproj">
+      <Project>{b1904e64-bb33-4889-84fd-8787f78b9bd1}</Project>
+      <Name>ctaDATAMODEL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

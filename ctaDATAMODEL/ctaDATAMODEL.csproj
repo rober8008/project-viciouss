@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B1904E64-BB33-4889-84FD-8787F78B9BD1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ctaDATAMODEL</RootNamespace>
+    <AssemblyName>ctaDATAMODEL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ctaDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ctaDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ctaDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ctaDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ctaDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="GetCarouselQuotesByMarketID_Result.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Holiday.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Indicator.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Market.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MarketIndex.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MarketIndex_Quote.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MarketIndex_Stock.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Market_Quote.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MercadoPagoNotification.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Portfolio.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Portfolio_Stock.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Portfolio_Stock_Indicator.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Portfolio_Stock_Shape.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Report_Type.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Shape.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Stock.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Stock_Quote.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Stock_Quote_Intradiary.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Stock_Report.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Stock_Type.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TashScheduleErrorLog.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaskSchedule.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tenant.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tenant_Type.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VcssTask.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VcssTaskInfo.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VcssTaskLog.cs">
+      <DependentUpon>ctaDBModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="ctaDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ctaDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ctaDBModel.edmx.diagram">
+      <DependentUpon>ctaDBModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ctaDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ctaDBModel.edmx</DependentUpon>
+      <LastGenOutput>ctaDBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ctaDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ctaDBModel.edmx</DependentUpon>
+      <LastGenOutput>ctaDBModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

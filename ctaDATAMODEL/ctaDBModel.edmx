@@ -1,0 +1,1905 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ctaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Config">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConfigName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ConfigValue" Type="nvarchar" MaxLength="1500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Holidays">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="market_id" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="duration" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Indicator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="active" Type="bit" />
+          <Property Name="param1" Type="nvarchar" MaxLength="50" />
+          <Property Name="color1" Type="nvarchar" MaxLength="50" />
+          <Property Name="param2" Type="nvarchar" MaxLength="50" />
+          <Property Name="color2" Type="nvarchar" MaxLength="50" />
+          <Property Name="param3" Type="nvarchar" MaxLength="50" />
+          <Property Name="color3" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Market">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="work_hours" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="utc_offset" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Market_Quote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="market_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MarketIndex">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="market_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MarketIndex_Quote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="marketindex_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MarketIndex_Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stock_id" Type="int" Nullable="false" />
+          <Property Name="marketindex_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MercadoPagoNotification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="obj_id" Type="varchar" MaxLength="50" />
+          <Property Name="live_mode" Type="bit" />
+          <Property Name="type" Type="varchar" MaxLength="150" />
+          <Property Name="date_created" Type="date" />
+          <Property Name="user_id" Type="varchar" MaxLength="50" />
+          <Property Name="api_version" Type="varchar" MaxLength="50" />
+          <Property Name="action" Type="varchar" MaxLength="150" />
+          <Property Name="data_id" Type="varchar" MaxLength="50" />
+          <Property Name="data_content" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Portfolio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Portfolio_Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="portfolio_id" Type="int" Nullable="false" />
+          <Property Name="stock_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Portfolio_Stock_Indicator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="portfolio_id" Type="int" Nullable="false" />
+          <Property Name="stock_id" Type="int" Nullable="false" />
+          <Property Name="indicator_id" Type="int" Nullable="false" />
+          <Property Name="param1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="color1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="param2" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="color2" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="param3" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="color3" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Portfolio_Stock_Shape">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="portfolio_id" Type="int" Nullable="false" />
+          <Property Name="stock_id" Type="int" Nullable="false" />
+          <Property Name="shape_id" Type="int" Nullable="false" />
+          <Property Name="color" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="date1" Type="datetime" Nullable="false" />
+          <Property Name="value1" Type="float" Nullable="false" />
+          <Property Name="date2" Type="datetime" />
+          <Property Name="value2" Type="float" />
+          <Property Name="date3" Type="datetime" />
+          <Property Name="value3" Type="float" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="url" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Report_Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shape">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="symbol" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="market_id" Type="int" Nullable="false" />
+          <Property Name="type_id" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="active" Type="bit" />
+          <Property Name="technical_report_batch" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Stock_Quote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stock_id" Type="int" Nullable="false" />
+          <Property Name="opening" Type="float" Nullable="false" />
+          <Property Name="closing" Type="float" Nullable="false" />
+          <Property Name="minimun" Type="float" Nullable="false" />
+          <Property Name="maximun" Type="float" Nullable="false" />
+          <Property Name="volume" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="date_round" Type="date" Nullable="false" />
+          <Property Name="adj_close" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stock_Quote_Intradiary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stock_id" Type="int" Nullable="false" />
+          <Property Name="opening" Type="float" Nullable="false" />
+          <Property Name="prev_closing" Type="float" Nullable="false" />
+          <Property Name="ask" Type="float" Nullable="false" />
+          <Property Name="ask_size" Type="float" Nullable="false" />
+          <Property Name="bid" Type="float" Nullable="false" />
+          <Property Name="bid_size" Type="float" Nullable="false" />
+          <Property Name="change" Type="float" Nullable="false" />
+          <Property Name="change_percent" Type="float" Nullable="false" />
+          <Property Name="last_trade_time" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="last_trade_price" Type="float" Nullable="false" />
+          <Property Name="last_trade_size" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="last_trade_date" Type="datetime" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stock_Report">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Stock_ID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="Date_Round" Type="date" Nullable="false" />
+          <Property Name="MA20" Type="float" />
+          <Property Name="MA50" Type="float" />
+          <Property Name="MA200" Type="float" />
+          <Property Name="RSI14" Type="float" />
+          <Property Name="Momentum12" Type="float" />
+          <Property Name="SOFast%k14" Type="float" />
+          <Property Name="SOFast%d3" Type="float" />
+          <Property Name="MACD2612" Type="float" />
+          <Property Name="MA9" Type="float" />
+          <Property Name="EMA20" Type="float" />
+          <Property Name="EMA12" Type="float" />
+          <Property Name="EMA26" Type="float" />
+          <Property Name="BoolUP" Type="float" />
+          <Property Name="BoolLOW" Type="float" />
+          <Property Name="WilliansR" Type="float" />
+          <Property Name="RSI14UpsAvg" Type="float" />
+          <Property Name="RSI14DownsAvg" Type="float" />
+        </EntityType>
+        <EntityType Name="Stock_Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TashScheduleErrorLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Error" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskSchedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Data" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ExecTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tenant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="secretpass" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="activationId" Type="varchar" MaxLength="50" />
+          <Property Name="type" Type="int" />
+          <Property Name="typeExpiration" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Tenant_Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VcssTask">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vcss_task_info_id" Type="int" Nullable="false" />
+          <Property Name="scheduled_time" Type="datetime" Nullable="false" />
+          <Property Name="data" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VcssTaskInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="market_id" Type="int" />
+          <Property Name="url" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="auth_token" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="last_updated" Type="datetime" Nullable="false" />
+          <Property Name="step" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VcssTaskLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="task_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="task_data" Type="varchar(max)" Nullable="false" />
+          <Property Name="task_scheduled_time" Type="datetime" Nullable="false" />
+          <Property Name="action" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="error_msg" Type="varchar(max)" Nullable="false" />
+          <Property Name="error_time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Holidays_to_Market">
+          <End Role="Market" Type="Self.Market" Multiplicity="1" />
+          <End Role="Holidays" Type="Self.Holidays" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Market">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Holidays">
+              <PropertyRef Name="market_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MarketIndex_Quote_To_MarketIndex">
+          <End Role="MarketIndex" Type="Self.MarketIndex" Multiplicity="1" />
+          <End Role="MarketIndex_Quote" Type="Self.MarketIndex_Quote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarketIndex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MarketIndex_Quote">
+              <PropertyRef Name="marketindex_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MarketIndex_Stock_To_MarketIndex">
+          <End Role="MarketIndex" Type="Self.MarketIndex" Multiplicity="1" />
+          <End Role="MarketIndex_Stock" Type="Self.MarketIndex_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarketIndex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MarketIndex_Stock">
+              <PropertyRef Name="marketindex_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MarketIndex_Stock_To_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="MarketIndex_Stock" Type="Self.MarketIndex_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MarketIndex_Stock">
+              <PropertyRef Name="stock_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MarketIndex_To_Market">
+          <End Role="Market" Type="Self.Market" Multiplicity="1" />
+          <End Role="MarketIndex" Type="Self.MarketIndex" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Market">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MarketIndex">
+              <PropertyRef Name="market_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_to_Tenant">
+          <End Role="Tenant" Type="Self.Tenant" Multiplicity="1" />
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortfolioStock_to_Portfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
+          <End Role="Portfolio_Stock" Type="Self.Portfolio_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Stock">
+              <PropertyRef Name="portfolio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortfolioStock_to_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Portfolio_Stock" Type="Self.Portfolio_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Stock">
+              <PropertyRef Name="stock_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortfolioStockIndicator_to_Indicator">
+          <End Role="Indicator" Type="Self.Indicator" Multiplicity="1" />
+          <End Role="Portfolio_Stock_Indicator" Type="Self.Portfolio_Stock_Indicator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Indicator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Stock_Indicator">
+              <PropertyRef Name="indicator_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortfolioStockIndicator_to_Portfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
+          <End Role="Portfolio_Stock_Indicator" Type="Self.Portfolio_Stock_Indicator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Stock_Indicator">
+              <PropertyRef Name="portfolio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortfolioStockIndicator_to_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Portfolio_Stock_Indicator" Type="Self.Portfolio_Stock_Indicator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Stock_Indicator">
+              <PropertyRef Name="stock_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortfolioStockShape_to_Portfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
+          <End Role="Portfolio_Stock_Shape" Type="Self.Portfolio_Stock_Shape" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Stock_Shape">
+              <PropertyRef Name="portfolio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortfolioStockShape_to_Shape">
+          <End Role="Shape" Type="Self.Shape" Multiplicity="1" />
+          <End Role="Portfolio_Stock_Shape" Type="Self.Portfolio_Stock_Shape" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shape">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Stock_Shape">
+              <PropertyRef Name="shape_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortfolioStockShape_to_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Portfolio_Stock_Shape" Type="Self.Portfolio_Stock_Shape" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Stock_Shape">
+              <PropertyRef Name="stock_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuotesMarket_to_Market">
+          <End Role="Market" Type="Self.Market" Multiplicity="1" />
+          <End Role="Market_Quote" Type="Self.Market_Quote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Market">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Market_Quote">
+              <PropertyRef Name="market_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuotesStock_to_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Stock_Quote" Type="Self.Stock_Quote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock_Quote">
+              <PropertyRef Name="stock_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_to_ReportType">
+          <End Role="Report_Type" Type="Self.Report_Type" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Report_Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Report_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Stock_Report" Type="Self.Stock_Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock_Report">
+              <PropertyRef Name="Stock_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_to_Market">
+          <End Role="Market" Type="Self.Market" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Market">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="market_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_to_StockType">
+          <End Role="Stock_Type" Type="Self.Stock_Type" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock_Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockQuotesIntradiary_to_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Stock_Quote_Intradiary" Type="Self.Stock_Quote_Intradiary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock_Quote_Intradiary">
+              <PropertyRef Name="stock_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tenant_to_TenantType">
+          <End Role="Tenant_Type" Type="Self.Tenant_Type" Multiplicity="0..1" />
+          <End Role="Tenant" Type="Self.Tenant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant_Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tenant">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VcssTask_VcssTaskInfo">
+          <End Role="VcssTaskInfo" Type="Self.VcssTaskInfo" Multiplicity="1" />
+          <End Role="VcssTask" Type="Self.VcssTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VcssTaskInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VcssTask">
+              <PropertyRef Name="vcss_task_info_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VcssTaskInfo_Market">
+          <End Role="Market" Type="Self.Market" Multiplicity="0..1" />
+          <End Role="VcssTaskInfo" Type="Self.VcssTaskInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Market">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VcssTaskInfo">
+              <PropertyRef Name="market_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetCarouselQuotesByMarketID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="marketID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ctaDBModelStoreContainer">
+          <EntitySet Name="Config" EntityType="Self.Config" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Holidays" EntityType="Self.Holidays" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Indicator" EntityType="Self.Indicator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Market" EntityType="Self.Market" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Market_Quote" EntityType="Self.Market_Quote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MarketIndex" EntityType="Self.MarketIndex" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MarketIndex_Quote" EntityType="Self.MarketIndex_Quote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MarketIndex_Stock" EntityType="Self.MarketIndex_Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MercadoPagoNotification" EntityType="Self.MercadoPagoNotification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Portfolio" EntityType="Self.Portfolio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Portfolio_Stock" EntityType="Self.Portfolio_Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Portfolio_Stock_Indicator" EntityType="Self.Portfolio_Stock_Indicator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Portfolio_Stock_Shape" EntityType="Self.Portfolio_Stock_Shape" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Report_Type" EntityType="Self.Report_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shape" EntityType="Self.Shape" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock_Quote" EntityType="Self.Stock_Quote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock_Quote_Intradiary" EntityType="Self.Stock_Quote_Intradiary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock_Report" EntityType="Self.Stock_Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock_Type" EntityType="Self.Stock_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TashScheduleErrorLog" EntityType="Self.TashScheduleErrorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskSchedule" EntityType="Self.TaskSchedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tenant" EntityType="Self.Tenant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tenant_Type" EntityType="Self.Tenant_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VcssTask" EntityType="Self.VcssTask" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VcssTaskInfo" EntityType="Self.VcssTaskInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VcssTaskLog" EntityType="Self.VcssTaskLog" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Holidays_to_Market" Association="Self.FK_Holidays_to_Market">
+            <End Role="Market" EntitySet="Market" />
+            <End Role="Holidays" EntitySet="Holidays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MarketIndex_Quote_To_MarketIndex" Association="Self.FK_MarketIndex_Quote_To_MarketIndex">
+            <End Role="MarketIndex" EntitySet="MarketIndex" />
+            <End Role="MarketIndex_Quote" EntitySet="MarketIndex_Quote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MarketIndex_Stock_To_MarketIndex" Association="Self.FK_MarketIndex_Stock_To_MarketIndex">
+            <End Role="MarketIndex" EntitySet="MarketIndex" />
+            <End Role="MarketIndex_Stock" EntitySet="MarketIndex_Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MarketIndex_Stock_To_Stock" Association="Self.FK_MarketIndex_Stock_To_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="MarketIndex_Stock" EntitySet="MarketIndex_Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MarketIndex_To_Market" Association="Self.FK_MarketIndex_To_Market">
+            <End Role="Market" EntitySet="Market" />
+            <End Role="MarketIndex" EntitySet="MarketIndex" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_to_Tenant" Association="Self.FK_Portfolio_to_Tenant">
+            <End Role="Tenant" EntitySet="Tenant" />
+            <End Role="Portfolio" EntitySet="Portfolio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortfolioStock_to_Portfolio" Association="Self.FK_PortfolioStock_to_Portfolio">
+            <End Role="Portfolio" EntitySet="Portfolio" />
+            <End Role="Portfolio_Stock" EntitySet="Portfolio_Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortfolioStock_to_Stock" Association="Self.FK_PortfolioStock_to_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="Portfolio_Stock" EntitySet="Portfolio_Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortfolioStockIndicator_to_Indicator" Association="Self.FK_PortfolioStockIndicator_to_Indicator">
+            <End Role="Indicator" EntitySet="Indicator" />
+            <End Role="Portfolio_Stock_Indicator" EntitySet="Portfolio_Stock_Indicator" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortfolioStockIndicator_to_Portfolio" Association="Self.FK_PortfolioStockIndicator_to_Portfolio">
+            <End Role="Portfolio" EntitySet="Portfolio" />
+            <End Role="Portfolio_Stock_Indicator" EntitySet="Portfolio_Stock_Indicator" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortfolioStockIndicator_to_Stock" Association="Self.FK_PortfolioStockIndicator_to_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="Portfolio_Stock_Indicator" EntitySet="Portfolio_Stock_Indicator" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortfolioStockShape_to_Portfolio" Association="Self.FK_PortfolioStockShape_to_Portfolio">
+            <End Role="Portfolio" EntitySet="Portfolio" />
+            <End Role="Portfolio_Stock_Shape" EntitySet="Portfolio_Stock_Shape" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortfolioStockShape_to_Shape" Association="Self.FK_PortfolioStockShape_to_Shape">
+            <End Role="Shape" EntitySet="Shape" />
+            <End Role="Portfolio_Stock_Shape" EntitySet="Portfolio_Stock_Shape" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortfolioStockShape_to_Stock" Association="Self.FK_PortfolioStockShape_to_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="Portfolio_Stock_Shape" EntitySet="Portfolio_Stock_Shape" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuotesMarket_to_Market" Association="Self.FK_QuotesMarket_to_Market">
+            <End Role="Market" EntitySet="Market" />
+            <End Role="Market_Quote" EntitySet="Market_Quote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuotesStock_to_Stock" Association="Self.FK_QuotesStock_to_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="Stock_Quote" EntitySet="Stock_Quote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_to_ReportType" Association="Self.FK_Report_to_ReportType">
+            <End Role="Report_Type" EntitySet="Report_Type" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Report_Stock" Association="Self.FK_Stock_Report_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="Stock_Report" EntitySet="Stock_Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_to_Market" Association="Self.FK_Stock_to_Market">
+            <End Role="Market" EntitySet="Market" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_to_StockType" Association="Self.FK_Stock_to_StockType">
+            <End Role="Stock_Type" EntitySet="Stock_Type" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockQuotesIntradiary_to_Stock" Association="Self.FK_StockQuotesIntradiary_to_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="Stock_Quote_Intradiary" EntitySet="Stock_Quote_Intradiary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tenant_to_TenantType" Association="Self.FK_Tenant_to_TenantType">
+            <End Role="Tenant_Type" EntitySet="Tenant_Type" />
+            <End Role="Tenant" EntitySet="Tenant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VcssTask_VcssTaskInfo" Association="Self.FK_VcssTask_VcssTaskInfo">
+            <End Role="VcssTaskInfo" EntitySet="VcssTaskInfo" />
+            <End Role="VcssTask" EntitySet="VcssTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VcssTaskInfo_Market" Association="Self.FK_VcssTaskInfo_Market">
+            <End Role="Market" EntitySet="Market" />
+            <End Role="VcssTaskInfo" EntitySet="VcssTaskInfo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ctaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Config">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConfigName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ConfigValue" Type="String" MaxLength="1500" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Holiday">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="market_id" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="duration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Market" Relationship="Self.FK_Holidays_to_Market" FromRole="Holidays" ToRole="Market" />
+        </EntityType>
+        <EntityType Name="Indicator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="param1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="color1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="param2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="color2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="param3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="color3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Portfolio_Stock_Indicator" Relationship="Self.FK_PortfolioStockIndicator_to_Indicator" FromRole="Indicator" ToRole="Portfolio_Stock_Indicator" />
+        </EntityType>
+        <EntityType Name="Market">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="work_hours" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="utc_offset" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Holidays" Relationship="Self.FK_Holidays_to_Market" FromRole="Market" ToRole="Holidays" />
+          <NavigationProperty Name="MarketIndexes" Relationship="Self.FK_MarketIndex_To_Market" FromRole="Market" ToRole="MarketIndex" />
+          <NavigationProperty Name="Market_Quote" Relationship="Self.FK_QuotesMarket_to_Market" FromRole="Market" ToRole="Market_Quote" />
+          <NavigationProperty Name="Stocks" Relationship="Self.FK_Stock_to_Market" FromRole="Market" ToRole="Stock" />
+          <NavigationProperty Name="VcssTaskInfoes" Relationship="Self.FK_VcssTaskInfo_Market" FromRole="Market" ToRole="VcssTaskInfo" />
+        </EntityType>
+        <EntityType Name="Market_Quote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="market_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Market" Relationship="Self.FK_QuotesMarket_to_Market" FromRole="Market_Quote" ToRole="Market" />
+        </EntityType>
+        <EntityType Name="MarketIndex">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="market_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Market" Relationship="Self.FK_MarketIndex_To_Market" FromRole="MarketIndex" ToRole="Market" />
+          <NavigationProperty Name="MarketIndex_Quote" Relationship="Self.FK_MarketIndex_Quote_To_MarketIndex" FromRole="MarketIndex" ToRole="MarketIndex_Quote" />
+          <NavigationProperty Name="MarketIndex_Stock" Relationship="Self.FK_MarketIndex_Stock_To_MarketIndex" FromRole="MarketIndex" ToRole="MarketIndex_Stock" />
+        </EntityType>
+        <EntityType Name="MarketIndex_Quote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="marketindex_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MarketIndex" Relationship="Self.FK_MarketIndex_Quote_To_MarketIndex" FromRole="MarketIndex_Quote" ToRole="MarketIndex" />
+        </EntityType>
+        <EntityType Name="MarketIndex_Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stock_id" Type="Int32" Nullable="false" />
+          <Property Name="marketindex_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MarketIndex" Relationship="Self.FK_MarketIndex_Stock_To_MarketIndex" FromRole="MarketIndex_Stock" ToRole="MarketIndex" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_MarketIndex_Stock_To_Stock" FromRole="MarketIndex_Stock" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="MercadoPagoNotification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="obj_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="live_mode" Type="Boolean" />
+          <Property Name="type" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="date_created" Type="DateTime" Precision="0" />
+          <Property Name="user_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="api_version" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="action" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="data_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="data_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Portfolio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tenant" Relationship="Self.FK_Portfolio_to_Tenant" FromRole="Portfolio" ToRole="Tenant" />
+          <NavigationProperty Name="Portfolio_Stock" Relationship="Self.FK_PortfolioStock_to_Portfolio" FromRole="Portfolio" ToRole="Portfolio_Stock" />
+          <NavigationProperty Name="Portfolio_Stock_Indicator" Relationship="Self.FK_PortfolioStockIndicator_to_Portfolio" FromRole="Portfolio" ToRole="Portfolio_Stock_Indicator" />
+          <NavigationProperty Name="Portfolio_Stock_Shape" Relationship="Self.FK_PortfolioStockShape_to_Portfolio" FromRole="Portfolio" ToRole="Portfolio_Stock_Shape" />
+        </EntityType>
+        <EntityType Name="Portfolio_Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="portfolio_id" Type="Int32" Nullable="false" />
+          <Property Name="stock_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Portfolio" Relationship="Self.FK_PortfolioStock_to_Portfolio" FromRole="Portfolio_Stock" ToRole="Portfolio" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_PortfolioStock_to_Stock" FromRole="Portfolio_Stock" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="Portfolio_Stock_Indicator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="portfolio_id" Type="Int32" Nullable="false" />
+          <Property Name="stock_id" Type="Int32" Nullable="false" />
+          <Property Name="indicator_id" Type="Int32" Nullable="false" />
+          <Property Name="param1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="color1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="param2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="color2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="param3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="color3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Indicator" Relationship="Self.FK_PortfolioStockIndicator_to_Indicator" FromRole="Portfolio_Stock_Indicator" ToRole="Indicator" />
+          <NavigationProperty Name="Portfolio" Relationship="Self.FK_PortfolioStockIndicator_to_Portfolio" FromRole="Portfolio_Stock_Indicator" ToRole="Portfolio" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_PortfolioStockIndicator_to_Stock" FromRole="Portfolio_Stock_Indicator" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="Portfolio_Stock_Shape">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="portfolio_id" Type="Int32" Nullable="false" />
+          <Property Name="stock_id" Type="Int32" Nullable="false" />
+          <Property Name="shape_id" Type="Int32" Nullable="false" />
+          <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date1" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="value1" Type="Double" Nullable="false" />
+          <Property Name="date2" Type="DateTime" Precision="3" />
+          <Property Name="value2" Type="Double" />
+          <Property Name="date3" Type="DateTime" Precision="3" />
+          <Property Name="value3" Type="Double" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Portfolio" Relationship="Self.FK_PortfolioStockShape_to_Portfolio" FromRole="Portfolio_Stock_Shape" ToRole="Portfolio" />
+          <NavigationProperty Name="Shape" Relationship="Self.FK_PortfolioStockShape_to_Shape" FromRole="Portfolio_Stock_Shape" ToRole="Shape" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_PortfolioStockShape_to_Stock" FromRole="Portfolio_Stock_Shape" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Report_Type" Relationship="Self.FK_Report_to_ReportType" FromRole="Report" ToRole="Report_Type" />
+        </EntityType>
+        <EntityType Name="Report_Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Report_to_ReportType" FromRole="Report_Type" ToRole="Report" />
+        </EntityType>
+        <EntityType Name="Shape">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Portfolio_Stock_Shape" Relationship="Self.FK_PortfolioStockShape_to_Shape" FromRole="Shape" ToRole="Portfolio_Stock_Shape" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="symbol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="market_id" Type="Int32" Nullable="false" />
+          <Property Name="type_id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="technical_report_batch" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Market" Relationship="Self.FK_Stock_to_Market" FromRole="Stock" ToRole="Market" />
+          <NavigationProperty Name="MarketIndex_Stock" Relationship="Self.FK_MarketIndex_Stock_To_Stock" FromRole="Stock" ToRole="MarketIndex_Stock" />
+          <NavigationProperty Name="Portfolio_Stock" Relationship="Self.FK_PortfolioStock_to_Stock" FromRole="Stock" ToRole="Portfolio_Stock" />
+          <NavigationProperty Name="Portfolio_Stock_Indicator" Relationship="Self.FK_PortfolioStockIndicator_to_Stock" FromRole="Stock" ToRole="Portfolio_Stock_Indicator" />
+          <NavigationProperty Name="Portfolio_Stock_Shape" Relationship="Self.FK_PortfolioStockShape_to_Stock" FromRole="Stock" ToRole="Portfolio_Stock_Shape" />
+          <NavigationProperty Name="Stock_Quote" Relationship="Self.FK_QuotesStock_to_Stock" FromRole="Stock" ToRole="Stock_Quote" />
+          <NavigationProperty Name="Stock_Report" Relationship="Self.FK_Stock_Report_Stock" FromRole="Stock" ToRole="Stock_Report" />
+          <NavigationProperty Name="Stock_Type" Relationship="Self.FK_Stock_to_StockType" FromRole="Stock" ToRole="Stock_Type" />
+          <NavigationProperty Name="Stock_Quote_Intradiary" Relationship="Self.FK_StockQuotesIntradiary_to_Stock" FromRole="Stock" ToRole="Stock_Quote_Intradiary" />
+        </EntityType>
+        <EntityType Name="Stock_Quote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stock_id" Type="Int32" Nullable="false" />
+          <Property Name="opening" Type="Double" Nullable="false" />
+          <Property Name="closing" Type="Double" Nullable="false" />
+          <Property Name="minimun" Type="Double" Nullable="false" />
+          <Property Name="maximun" Type="Double" Nullable="false" />
+          <Property Name="volume" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="date_round" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="adj_close" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_QuotesStock_to_Stock" FromRole="Stock_Quote" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="Stock_Quote_Intradiary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stock_id" Type="Int32" Nullable="false" />
+          <Property Name="opening" Type="Double" Nullable="false" />
+          <Property Name="prev_closing" Type="Double" Nullable="false" />
+          <Property Name="ask" Type="Double" Nullable="false" />
+          <Property Name="ask_size" Type="Double" Nullable="false" />
+          <Property Name="bid" Type="Double" Nullable="false" />
+          <Property Name="bid_size" Type="Double" Nullable="false" />
+          <Property Name="change" Type="Double" Nullable="false" />
+          <Property Name="change_percent" Type="Double" Nullable="false" />
+          <Property Name="last_trade_time" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_trade_price" Type="Double" Nullable="false" />
+          <Property Name="last_trade_size" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="last_trade_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_StockQuotesIntradiary_to_Stock" FromRole="Stock_Quote_Intradiary" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="Stock_Report">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Stock_ID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="Date_Round" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MA20" Type="Double" />
+          <Property Name="MA50" Type="Double" />
+          <Property Name="MA200" Type="Double" />
+          <Property Name="RSI14" Type="Double" />
+          <Property Name="Momentum12" Type="Double" />
+          <Property Name="SOFast_k14" Type="Double" />
+          <Property Name="SOFast_d3" Type="Double" />
+          <Property Name="MACD2612" Type="Double" />
+          <Property Name="MA9" Type="Double" />
+          <Property Name="EMA20" Type="Double" />
+          <Property Name="EMA12" Type="Double" />
+          <Property Name="EMA26" Type="Double" />
+          <Property Name="BoolUP" Type="Double" />
+          <Property Name="BoolLOW" Type="Double" />
+          <Property Name="WilliansR" Type="Double" />
+          <Property Name="RSI14UpsAvg" Type="Double" />
+          <Property Name="RSI14DownsAvg" Type="Double" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_Stock_Report_Stock" FromRole="Stock_Report" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="Stock_Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Stocks" Relationship="Self.FK_Stock_to_StockType" FromRole="Stock_Type" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="TashScheduleErrorLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Error" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="TaskSchedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExecTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Tenant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="secretpass" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="activationId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="Int32" />
+          <Property Name="typeExpiration" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Portfolios" Relationship="Self.FK_Portfolio_to_Tenant" FromRole="Tenant" ToRole="Portfolio" />
+          <NavigationProperty Name="Tenant_Type" Relationship="Self.FK_Tenant_to_TenantType" FromRole="Tenant" ToRole="Tenant_Type" />
+        </EntityType>
+        <EntityType Name="Tenant_Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tenants" Relationship="Self.FK_Tenant_to_TenantType" FromRole="Tenant_Type" ToRole="Tenant" />
+        </EntityType>
+        <EntityType Name="VcssTask">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vcss_task_info_id" Type="Int32" Nullable="false" />
+          <Property Name="scheduled_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="VcssTaskInfo" Relationship="Self.FK_VcssTask_VcssTaskInfo" FromRole="VcssTask" ToRole="VcssTaskInfo" />
+        </EntityType>
+        <EntityType Name="VcssTaskInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="market_id" Type="Int32" />
+          <Property Name="url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="auth_token" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_updated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="step" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Market" Relationship="Self.FK_VcssTaskInfo_Market" FromRole="VcssTaskInfo" ToRole="Market" />
+          <NavigationProperty Name="VcssTasks" Relationship="Self.FK_VcssTask_VcssTaskInfo" FromRole="VcssTaskInfo" ToRole="VcssTask" />
+        </EntityType>
+        <EntityType Name="VcssTaskLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="task_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="task_data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="task_scheduled_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="action" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="error_msg" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="error_time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_Holidays_to_Market">
+          <End Role="Market" Type="Self.Market" Multiplicity="1" />
+          <End Role="Holidays" Type="Self.Holiday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Market">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Holidays">
+              <PropertyRef Name="market_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortfolioStockIndicator_to_Indicator">
+          <End Role="Indicator" Type="Self.Indicator" Multiplicity="1" />
+          <End Role="Portfolio_Stock_Indicator" Type="Self.Portfolio_Stock_Indicator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Indicator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Stock_Indicator">
+              <PropertyRef Name="indicator_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MarketIndex_To_Market">
+          <End Role="Market" Type="Self.Market" Multiplicity="1" />
+          <End Role="MarketIndex" Type="Self.MarketIndex" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Market">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MarketIndex">
+              <PropertyRef Name="market_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuotesMarket_to_Market">
+          <End Role="Market" Type="Self.Market" Multiplicity="1" />
+          <End Role="Market_Quote" Type="Self.Market_Quote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Market">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Market_Quote">
+              <PropertyRef Name="market_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_to_Market">
+          <End Role="Market" Type="Self.Market" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Market">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="market_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VcssTaskInfo_Market">
+          <End Role="Market" Type="Self.Market" Multiplicity="0..1" />
+          <End Role="VcssTaskInfo" Type="Self.VcssTaskInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Market">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VcssTaskInfo">
+              <PropertyRef Name="market_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MarketIndex_Quote_To_MarketIndex">
+          <End Role="MarketIndex" Type="Self.MarketIndex" Multiplicity="1" />
+          <End Role="MarketIndex_Quote" Type="Self.MarketIndex_Quote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarketIndex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MarketIndex_Quote">
+              <PropertyRef Name="marketindex_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MarketIndex_Stock_To_MarketIndex">
+          <End Role="MarketIndex" Type="Self.MarketIndex" Multiplicity="1" />
+          <End Role="MarketIndex_Stock" Type="Self.MarketIndex_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarketIndex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MarketIndex_Stock">
+              <PropertyRef Name="marketindex_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MarketIndex_Stock_To_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="MarketIndex_Stock" Type="Self.MarketIndex_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MarketIndex_Stock">
+              <PropertyRef Name="stock_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_to_Tenant">
+          <End Role="Tenant" Type="Self.Tenant" Multiplicity="1" />
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortfolioStock_to_Portfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
+          <End Role="Portfolio_Stock" Type="Self.Portfolio_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Stock">
+              <PropertyRef Name="portfolio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortfolioStockIndicator_to_Portfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
+          <End Role="Portfolio_Stock_Indicator" Type="Self.Portfolio_Stock_Indicator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Stock_Indicator">
+              <PropertyRef Name="portfolio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortfolioStockShape_to_Portfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
+          <End Role="Portfolio_Stock_Shape" Type="Self.Portfolio_Stock_Shape" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Stock_Shape">
+              <PropertyRef Name="portfolio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortfolioStock_to_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Portfolio_Stock" Type="Self.Portfolio_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Stock">
+              <PropertyRef Name="stock_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortfolioStockIndicator_to_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Portfolio_Stock_Indicator" Type="Self.Portfolio_Stock_Indicator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Stock_Indicator">
+              <PropertyRef Name="stock_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortfolioStockShape_to_Shape">
+          <End Role="Shape" Type="Self.Shape" Multiplicity="1" />
+          <End Role="Portfolio_Stock_Shape" Type="Self.Portfolio_Stock_Shape" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shape">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Stock_Shape">
+              <PropertyRef Name="shape_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortfolioStockShape_to_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Portfolio_Stock_Shape" Type="Self.Portfolio_Stock_Shape" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Stock_Shape">
+              <PropertyRef Name="stock_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_to_ReportType">
+          <End Role="Report_Type" Type="Self.Report_Type" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Report_Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuotesStock_to_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Stock_Quote" Type="Self.Stock_Quote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock_Quote">
+              <PropertyRef Name="stock_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Report_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Stock_Report" Type="Self.Stock_Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock_Report">
+              <PropertyRef Name="Stock_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_to_StockType">
+          <End Role="Stock_Type" Type="Self.Stock_Type" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock_Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockQuotesIntradiary_to_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Stock_Quote_Intradiary" Type="Self.Stock_Quote_Intradiary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock_Quote_Intradiary">
+              <PropertyRef Name="stock_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tenant_to_TenantType">
+          <End Role="Tenant_Type" Type="Self.Tenant_Type" Multiplicity="0..1" />
+          <End Role="Tenant" Type="Self.Tenant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant_Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tenant">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VcssTask_VcssTaskInfo">
+          <End Role="VcssTaskInfo" Type="Self.VcssTaskInfo" Multiplicity="1" />
+          <End Role="VcssTask" Type="Self.VcssTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VcssTaskInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VcssTask">
+              <PropertyRef Name="vcss_task_info_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ctaDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Configs" EntityType="Self.Config" />
+          <EntitySet Name="Holidays" EntityType="Self.Holiday" />
+          <EntitySet Name="Indicators" EntityType="Self.Indicator" />
+          <EntitySet Name="Markets" EntityType="Self.Market" />
+          <EntitySet Name="Market_Quote" EntityType="Self.Market_Quote" />
+          <EntitySet Name="MarketIndexes" EntityType="Self.MarketIndex" />
+          <EntitySet Name="MarketIndex_Quote" EntityType="Self.MarketIndex_Quote" />
+          <EntitySet Name="MarketIndex_Stock" EntityType="Self.MarketIndex_Stock" />
+          <EntitySet Name="MercadoPagoNotifications" EntityType="Self.MercadoPagoNotification" />
+          <EntitySet Name="Portfolios" EntityType="Self.Portfolio" />
+          <EntitySet Name="Portfolio_Stock" EntityType="Self.Portfolio_Stock" />
+          <EntitySet Name="Portfolio_Stock_Indicator" EntityType="Self.Portfolio_Stock_Indicator" />
+          <EntitySet Name="Portfolio_Stock_Shape" EntityType="Self.Portfolio_Stock_Shape" />
+          <EntitySet Name="Reports" EntityType="Self.Report" />
+          <EntitySet Name="Report_Type" EntityType="Self.Report_Type" />
+          <EntitySet Name="Shapes" EntityType="Self.Shape" />
+          <EntitySet Name="Stocks" EntityType="Self.Stock" />
+          <EntitySet Name="Stock_Quote" EntityType="Self.Stock_Quote" />
+          <EntitySet Name="Stock_Quote_Intradiary" EntityType="Self.Stock_Quote_Intradiary" />
+          <EntitySet Name="Stock_Report" EntityType="Self.Stock_Report" />
+          <EntitySet Name="Stock_Type" EntityType="Self.Stock_Type" />
+          <EntitySet Name="TashScheduleErrorLogs" EntityType="Self.TashScheduleErrorLog" />
+          <EntitySet Name="TaskSchedules" EntityType="Self.TaskSchedule" />
+          <EntitySet Name="Tenants" EntityType="Self.Tenant" />
+          <EntitySet Name="Tenant_Type" EntityType="Self.Tenant_Type" />
+          <EntitySet Name="VcssTasks" EntityType="Self.VcssTask" />
+          <EntitySet Name="VcssTaskInfoes" EntityType="Self.VcssTaskInfo" />
+          <EntitySet Name="VcssTaskLogs" EntityType="Self.VcssTaskLog" />
+          <AssociationSet Name="FK_Holidays_to_Market" Association="Self.FK_Holidays_to_Market">
+            <End Role="Market" EntitySet="Markets" />
+            <End Role="Holidays" EntitySet="Holidays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortfolioStockIndicator_to_Indicator" Association="Self.FK_PortfolioStockIndicator_to_Indicator">
+            <End Role="Indicator" EntitySet="Indicators" />
+            <End Role="Portfolio_Stock_Indicator" EntitySet="Portfolio_Stock_Indicator" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MarketIndex_To_Market" Association="Self.FK_MarketIndex_To_Market">
+            <End Role="Market" EntitySet="Markets" />
+            <End Role="MarketIndex" EntitySet="MarketIndexes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuotesMarket_to_Market" Association="Self.FK_QuotesMarket_to_Market">
+            <End Role="Market" EntitySet="Markets" />
+            <End Role="Market_Quote" EntitySet="Market_Quote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_to_Market" Association="Self.FK_Stock_to_Market">
+            <End Role="Market" EntitySet="Markets" />
+            <End Role="Stock" EntitySet="Stocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VcssTaskInfo_Market" Association="Self.FK_VcssTaskInfo_Market">
+            <End Role="Market" EntitySet="Markets" />
+            <End Role="VcssTaskInfo" EntitySet="VcssTaskInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MarketIndex_Quote_To_MarketIndex" Association="Self.FK_MarketIndex_Quote_To_MarketIndex">
+            <End Role="MarketIndex" EntitySet="MarketIndexes" />
+            <End Role="MarketIndex_Quote" EntitySet="MarketIndex_Quote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MarketIndex_Stock_To_MarketIndex" Association="Self.FK_MarketIndex_Stock_To_MarketIndex">
+            <End Role="MarketIndex" EntitySet="MarketIndexes" />
+            <End Role="MarketIndex_Stock" EntitySet="MarketIndex_Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MarketIndex_Stock_To_Stock" Association="Self.FK_MarketIndex_Stock_To_Stock">
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="MarketIndex_Stock" EntitySet="MarketIndex_Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_to_Tenant" Association="Self.FK_Portfolio_to_Tenant">
+            <End Role="Tenant" EntitySet="Tenants" />
+            <End Role="Portfolio" EntitySet="Portfolios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortfolioStock_to_Portfolio" Association="Self.FK_PortfolioStock_to_Portfolio">
+            <End Role="Portfolio" EntitySet="Portfolios" />
+            <End Role="Portfolio_Stock" EntitySet="Portfolio_Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortfolioStockIndicator_to_Portfolio" Association="Self.FK_PortfolioStockIndicator_to_Portfolio">
+            <End Role="Portfolio" EntitySet="Portfolios" />
+            <End Role="Portfolio_Stock_Indicator" EntitySet="Portfolio_Stock_Indicator" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortfolioStockShape_to_Portfolio" Association="Self.FK_PortfolioStockShape_to_Portfolio">
+            <End Role="Portfolio" EntitySet="Portfolios" />
+            <End Role="Portfolio_Stock_Shape" EntitySet="Portfolio_Stock_Shape" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortfolioStock_to_Stock" Association="Self.FK_PortfolioStock_to_Stock">
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="Portfolio_Stock" EntitySet="Portfolio_Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortfolioStockIndicator_to_Stock" Association="Self.FK_PortfolioStockIndicator_to_Stock">
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="Portfolio_Stock_Indicator" EntitySet="Portfolio_Stock_Indicator" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortfolioStockShape_to_Shape" Association="Self.FK_PortfolioStockShape_to_Shape">
+            <End Role="Shape" EntitySet="Shapes" />
+            <End Role="Portfolio_Stock_Shape" EntitySet="Portfolio_Stock_Shape" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortfolioStockShape_to_Stock" Association="Self.FK_PortfolioStockShape_to_Stock">
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="Portfolio_Stock_Shape" EntitySet="Portfolio_Stock_Shape" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_to_ReportType" Association="Self.FK_Report_to_ReportType">
+            <End Role="Report_Type" EntitySet="Report_Type" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuotesStock_to_Stock" Association="Self.FK_QuotesStock_to_Stock">
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="Stock_Quote" EntitySet="Stock_Quote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Report_Stock" Association="Self.FK_Stock_Report_Stock">
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="Stock_Report" EntitySet="Stock_Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_to_StockType" Association="Self.FK_Stock_to_StockType">
+            <End Role="Stock_Type" EntitySet="Stock_Type" />
+            <End Role="Stock" EntitySet="Stocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockQuotesIntradiary_to_Stock" Association="Self.FK_StockQuotesIntradiary_to_Stock">
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="Stock_Quote_Intradiary" EntitySet="Stock_Quote_Intradiary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tenant_to_TenantType" Association="Self.FK_Tenant_to_TenantType">
+            <End Role="Tenant_Type" EntitySet="Tenant_Type" />
+            <End Role="Tenant" EntitySet="Tenants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VcssTask_VcssTaskInfo" Association="Self.FK_VcssTask_VcssTaskInfo">
+            <End Role="VcssTaskInfo" EntitySet="VcssTaskInfoes" />
+            <End Role="VcssTask" EntitySet="VcssTasks" />
+          </AssociationSet>
+          <FunctionImport Name="GetCarouselQuotesByMarketID" ReturnType="Collection(ctaDBModel.GetCarouselQuotesByMarketID_Result)">
+            <Parameter Name="marketID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetCarouselQuotesByMarketID_Result">
+          <Property Type="Int32" Name="StockID" Nullable="false" />
+          <Property Type="String" Name="Symbol" Nullable="false" MaxLength="50" />
+          <Property Type="Double" Name="PercentVariation" Nullable="false" />
+          <Property Type="Int32" Name="Variation" Nullable="false" />
+          <Property Type="Double" Name="LastTradePrize" Nullable="false" />
+          <Property Type="Double" Name="Ask" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ctaDBModelStoreContainer" CdmEntityContainer="ctaDBEntities">
+          <EntitySetMapping Name="Configs">
+            <EntityTypeMapping TypeName="ctaDBModel.Config">
+              <MappingFragment StoreEntitySet="Config">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ConfigName" ColumnName="ConfigName" />
+                <ScalarProperty Name="ConfigValue" ColumnName="ConfigValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Holidays">
+            <EntityTypeMapping TypeName="ctaDBModel.Holiday">
+              <MappingFragment StoreEntitySet="Holidays">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="market_id" ColumnName="market_id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Indicators">
+            <EntityTypeMapping TypeName="ctaDBModel.Indicator">
+              <MappingFragment StoreEntitySet="Indicator">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="param1" ColumnName="param1" />
+                <ScalarProperty Name="color1" ColumnName="color1" />
+                <ScalarProperty Name="param2" ColumnName="param2" />
+                <ScalarProperty Name="color2" ColumnName="color2" />
+                <ScalarProperty Name="param3" ColumnName="param3" />
+                <ScalarProperty Name="color3" ColumnName="color3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Markets">
+            <EntityTypeMapping TypeName="ctaDBModel.Market">
+              <MappingFragment StoreEntitySet="Market">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="work_hours" ColumnName="work_hours" />
+                <ScalarProperty Name="utc_offset" ColumnName="utc_offset" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Market_Quote">
+            <EntityTypeMapping TypeName="ctaDBModel.Market_Quote">
+              <MappingFragment StoreEntitySet="Market_Quote">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="market_id" ColumnName="market_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MarketIndexes">
+            <EntityTypeMapping TypeName="ctaDBModel.MarketIndex">
+              <MappingFragment StoreEntitySet="MarketIndex">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="market_id" ColumnName="market_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MarketIndex_Quote">
+            <EntityTypeMapping TypeName="ctaDBModel.MarketIndex_Quote">
+              <MappingFragment StoreEntitySet="MarketIndex_Quote">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="marketindex_id" ColumnName="marketindex_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MarketIndex_Stock">
+            <EntityTypeMapping TypeName="ctaDBModel.MarketIndex_Stock">
+              <MappingFragment StoreEntitySet="MarketIndex_Stock">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="stock_id" ColumnName="stock_id" />
+                <ScalarProperty Name="marketindex_id" ColumnName="marketindex_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MercadoPagoNotifications">
+            <EntityTypeMapping TypeName="ctaDBModel.MercadoPagoNotification">
+              <MappingFragment StoreEntitySet="MercadoPagoNotification">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="obj_id" ColumnName="obj_id" />
+                <ScalarProperty Name="live_mode" ColumnName="live_mode" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="api_version" ColumnName="api_version" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="data_id" ColumnName="data_id" />
+                <ScalarProperty Name="data_content" ColumnName="data_content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Portfolios">
+            <EntityTypeMapping TypeName="ctaDBModel.Portfolio">
+              <MappingFragment StoreEntitySet="Portfolio">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Portfolio_Stock">
+            <EntityTypeMapping TypeName="ctaDBModel.Portfolio_Stock">
+              <MappingFragment StoreEntitySet="Portfolio_Stock">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="portfolio_id" ColumnName="portfolio_id" />
+                <ScalarProperty Name="stock_id" ColumnName="stock_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Portfolio_Stock_Indicator">
+            <EntityTypeMapping TypeName="ctaDBModel.Portfolio_Stock_Indicator">
+              <MappingFragment StoreEntitySet="Portfolio_Stock_Indicator">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="portfolio_id" ColumnName="portfolio_id" />
+                <ScalarProperty Name="stock_id" ColumnName="stock_id" />
+                <ScalarProperty Name="indicator_id" ColumnName="indicator_id" />
+                <ScalarProperty Name="param1" ColumnName="param1" />
+                <ScalarProperty Name="color1" ColumnName="color1" />
+                <ScalarProperty Name="param2" ColumnName="param2" />
+                <ScalarProperty Name="color2" ColumnName="color2" />
+                <ScalarProperty Name="param3" ColumnName="param3" />
+                <ScalarProperty Name="color3" ColumnName="color3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Portfolio_Stock_Shape">
+            <EntityTypeMapping TypeName="ctaDBModel.Portfolio_Stock_Shape">
+              <MappingFragment StoreEntitySet="Portfolio_Stock_Shape">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="portfolio_id" ColumnName="portfolio_id" />
+                <ScalarProperty Name="stock_id" ColumnName="stock_id" />
+                <ScalarProperty Name="shape_id" ColumnName="shape_id" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="date1" ColumnName="date1" />
+                <ScalarProperty Name="value1" ColumnName="value1" />
+                <ScalarProperty Name="date2" ColumnName="date2" />
+                <ScalarProperty Name="value2" ColumnName="value2" />
+                <ScalarProperty Name="date3" ColumnName="date3" />
+                <ScalarProperty Name="value3" ColumnName="value3" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reports">
+            <EntityTypeMapping TypeName="ctaDBModel.Report">
+              <MappingFragment StoreEntitySet="Report">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Report_Type">
+            <EntityTypeMapping TypeName="ctaDBModel.Report_Type">
+              <MappingFragment StoreEntitySet="Report_Type">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shapes">
+            <EntityTypeMapping TypeName="ctaDBModel.Shape">
+              <MappingFragment StoreEntitySet="Shape">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="ctaDBModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="symbol" ColumnName="symbol" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="market_id" ColumnName="market_id" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="technical_report_batch" ColumnName="technical_report_batch" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stock_Quote">
+            <EntityTypeMapping TypeName="ctaDBModel.Stock_Quote">
+              <MappingFragment StoreEntitySet="Stock_Quote">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="stock_id" ColumnName="stock_id" />
+                <ScalarProperty Name="opening" ColumnName="opening" />
+                <ScalarProperty Name="closing" ColumnName="closing" />
+                <ScalarProperty Name="minimun" ColumnName="minimun" />
+                <ScalarProperty Name="maximun" ColumnName="maximun" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
+                <ScalarProperty Name="date_round" ColumnName="date_round" />
+                <ScalarProperty Name="adj_close" ColumnName="adj_close" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stock_Quote_Intradiary">
+            <EntityTypeMapping TypeName="ctaDBModel.Stock_Quote_Intradiary">
+              <MappingFragment StoreEntitySet="Stock_Quote_Intradiary">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="stock_id" ColumnName="stock_id" />
+                <ScalarProperty Name="opening" ColumnName="opening" />
+                <ScalarProperty Name="prev_closing" ColumnName="prev_closing" />
+                <ScalarProperty Name="ask" ColumnName="ask" />
+                <ScalarProperty Name="ask_size" ColumnName="ask_size" />
+                <ScalarProperty Name="bid" ColumnName="bid" />
+                <ScalarProperty Name="bid_size" ColumnName="bid_size" />
+                <ScalarProperty Name="change" ColumnName="change" />
+                <ScalarProperty Name="change_percent" ColumnName="change_percent" />
+                <ScalarProperty Name="last_trade_time" ColumnName="last_trade_time" />
+                <ScalarProperty Name="last_trade_price" ColumnName="last_trade_price" />
+                <ScalarProperty Name="last_trade_size" ColumnName="last_trade_size" />
+                <ScalarProperty Name="last_trade_date" ColumnName="last_trade_date" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stock_Report">
+            <EntityTypeMapping TypeName="ctaDBModel.Stock_Report">
+              <MappingFragment StoreEntitySet="Stock_Report">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Stock_ID" ColumnName="Stock_ID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Date_Round" ColumnName="Date_Round" />
+                <ScalarProperty Name="MA20" ColumnName="MA20" />
+                <ScalarProperty Name="MA50" ColumnName="MA50" />
+                <ScalarProperty Name="MA200" ColumnName="MA200" />
+                <ScalarProperty Name="RSI14" ColumnName="RSI14" />
+                <ScalarProperty Name="Momentum12" ColumnName="Momentum12" />
+                <ScalarProperty Name="SOFast_k14" ColumnName="SOFast%k14" />
+                <ScalarProperty Name="SOFast_d3" ColumnName="SOFast%d3" />
+                <ScalarProperty Name="MACD2612" ColumnName="MACD2612" />
+                <ScalarProperty Name="MA9" ColumnName="MA9" />
+                <ScalarProperty Name="EMA20" ColumnName="EMA20" />
+                <ScalarProperty Name="EMA12" ColumnName="EMA12" />
+                <ScalarProperty Name="EMA26" ColumnName="EMA26" />
+                <ScalarProperty Name="BoolUP" ColumnName="BoolUP" />
+                <ScalarProperty Name="BoolLOW" ColumnName="BoolLOW" />
+                <ScalarProperty Name="WilliansR" ColumnName="WilliansR" />
+                <ScalarProperty Name="RSI14UpsAvg" ColumnName="RSI14UpsAvg" />
+                <ScalarProperty Name="RSI14DownsAvg" ColumnName="RSI14DownsAvg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stock_Type">
+            <EntityTypeMapping TypeName="ctaDBModel.Stock_Type">
+              <MappingFragment StoreEntitySet="Stock_Type">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TashScheduleErrorLogs">
+            <EntityTypeMapping TypeName="ctaDBModel.TashScheduleErrorLog">
+              <MappingFragment StoreEntitySet="TashScheduleErrorLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Error" ColumnName="Error" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskSchedules">
+            <EntityTypeMapping TypeName="ctaDBModel.TaskSchedule">
+              <MappingFragment StoreEntitySet="TaskSchedule">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ExecTime" ColumnName="ExecTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tenants">
+            <EntityTypeMapping TypeName="ctaDBModel.Tenant">
+              <MappingFragment StoreEntitySet="Tenant">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="secretpass" ColumnName="secretpass" />
+                <ScalarProperty Name="activationId" ColumnName="activationId" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="typeExpiration" ColumnName="typeExpiration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tenant_Type">
+            <EntityTypeMapping TypeName="ctaDBModel.Tenant_Type">
+              <MappingFragment StoreEntitySet="Tenant_Type">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VcssTasks">
+            <EntityTypeMapping TypeName="ctaDBModel.VcssTask">
+              <MappingFragment StoreEntitySet="VcssTask">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="vcss_task_info_id" ColumnName="vcss_task_info_id" />
+                <ScalarProperty Name="scheduled_time" ColumnName="scheduled_time" />
+                <ScalarProperty Name="data" ColumnName="data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VcssTaskInfoes">
+            <EntityTypeMapping TypeName="ctaDBModel.VcssTaskInfo">
+              <MappingFragment StoreEntitySet="VcssTaskInfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="market_id" ColumnName="market_id" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="auth_token" ColumnName="auth_token" />
+                <ScalarProperty Name="last_updated" ColumnName="last_updated" />
+                <ScalarProperty Name="step" ColumnName="step" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VcssTaskLogs">
+            <EntityTypeMapping TypeName="ctaDBModel.VcssTaskLog">
+              <MappingFragment StoreEntitySet="VcssTaskLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="task_name" ColumnName="task_name" />
+                <ScalarProperty Name="task_data" ColumnName="task_data" />
+                <ScalarProperty Name="task_scheduled_time" ColumnName="task_scheduled_time" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="error_msg" ColumnName="error_msg" />
+                <ScalarProperty Name="error_time" ColumnName="error_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetCarouselQuotesByMarketID" FunctionName="ctaDBModel.Store.GetCarouselQuotesByMarketID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ctaDBModel.GetCarouselQuotesByMarketID_Result">
+                <ScalarProperty Name="StockID" ColumnName="StockID" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="PercentVariation" ColumnName="PercentVariation" />
+                <ScalarProperty Name="Variation" ColumnName="Variation" />
+                <ScalarProperty Name="LastTradePrize" ColumnName="LastTradePrize" />
+                <ScalarProperty Name="Ask" ColumnName="Ask" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="83f4ade507ce4032bdddc02f33082bdb" Name="Diagram1">
+        <EntityTypeShape EntityType="ctaDBModel.Config" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Holiday" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Indicator" Width="1.5" PointX="6" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Market" Width="1.5" PointX="0.75" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Market_Quote" Width="1.5" PointX="3" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.MarketIndex" Width="1.5" PointX="3" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.MarketIndex_Quote" Width="1.5" PointX="5.25" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.MarketIndex_Stock" Width="1.5" PointX="5.25" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.MercadoPagoNotification" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Portfolio" Width="1.5" PointX="6" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Portfolio_Stock" Width="1.5" PointX="5.25" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Portfolio_Stock_Indicator" Width="1.5" PointX="8.25" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Portfolio_Stock_Shape" Width="1.5" PointX="8.25" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Report" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Report_Type" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Shape" Width="1.5" PointX="6" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Stock" Width="1.5" PointX="3" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Stock_Quote" Width="1.5" PointX="5.25" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Stock_Quote_Intradiary" Width="1.5" PointX="5.25" PointY="42.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Stock_Report" Width="1.5" PointX="5.25" PointY="47.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Stock_Type" Width="1.5" PointX="0.75" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.TashScheduleErrorLog" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.TaskSchedule" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Tenant" Width="1.5" PointX="3.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.Tenant_Type" Width="1.5" PointX="1.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.VcssTask" Width="1.5" PointX="5.25" PointY="39.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.VcssTaskInfo" Width="1.5" PointX="3" PointY="39.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ctaDBModel.VcssTaskLog" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="ctaDBModel.FK_Holidays_to_Market" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_PortfolioStockIndicator_to_Indicator" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_MarketIndex_To_Market" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_QuotesMarket_to_Market" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_Stock_to_Market" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_VcssTaskInfo_Market" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_MarketIndex_Quote_To_MarketIndex" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_MarketIndex_Stock_To_MarketIndex" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_MarketIndex_Stock_To_Stock" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_Portfolio_to_Tenant" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_PortfolioStock_to_Portfolio" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_PortfolioStockIndicator_to_Portfolio" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_PortfolioStockShape_to_Portfolio" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_PortfolioStock_to_Stock" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_PortfolioStockIndicator_to_Stock" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_PortfolioStockShape_to_Shape" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_PortfolioStockShape_to_Stock" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_Report_to_ReportType" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_QuotesStock_to_Stock" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_Stock_Report_Stock" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_Stock_to_StockType" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_StockQuotesIntradiary_to_Stock" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_Tenant_to_TenantType" ManuallyRouted="false" />
+        <AssociationConnector Association="ctaDBModel.FK_VcssTask_VcssTaskInfo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,101 @@
+﻿@model ctaWEB.Models.ContactModel
+
+<div class="container" style="margin-top:50px;margin-bottom:50px;">
+    <div class="row">
+        <div class="col-lg-6">
+            <h1 style="color:#008a69;font-weight:bold;margin-top:0px;">Contactanos</h1>
+            <h4>Escribinos, en menos de 24hs nos contactaremos</h4>    
+            <h6>Buenos Aires, Argentina</h6>            
+            <a href="https://www.facebook.com/Viciouss-139562596717053" target="_blank"><img src="~/Images/Shared/ContactUs/facebook-logo.png" style="width:24px;height:24px;float:left;padding-right:10px;" /></a>
+            <a href="https://twitter.com/Viciouss_mkt" target="_blank"><img src="~/Images/Shared/ContactUs/twitter-logo-silhouette.png" style="width:24px;height:24px;float:left;padding-right:10px;" /></a>
+            <a href="https://www.instagram.com/vicioussok/?hl=es-la" target="_blank"><img src="~/Images/Shared/ContactUs/instagram-logo.png" style="width:24px;height:24px;float:left;padding-right:10px;" /></a>
+            <a href="https://www.linkedin.com/company/viciouss" target="_blank"><img src="~/Images/Shared/ContactUs/linked-in-logo.png" style="width:24px;height:24px;float:left;padding-right:10px;" /></a>                
+        </div>
+        <div class="col-lg-6">
+            @using (Ajax.BeginForm("DoContact", "User", null, new AjaxOptions
+            {
+                HttpMethod = "POST",
+                OnBegin = "beginPost",
+                OnSuccess = "successCallback",
+                OnFailure = "errorCallback"
+            }, new { @class = "", id = "formContacto" }))
+            {
+
+                @Html.AntiForgeryToken()
+                <div class="row control-group">
+                    <div class="form-group col-xs-12">
+                        @Html.TextBoxFor(Model => Model.Nombre, new { @id = "nombreContact", @name = "nombreContact", @class = "form-control contact-us-form-control", maxlength = "50", @placeholder="Nombre" })
+                        @Html.ValidationMessageFor(Model => Model.Nombre, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12">
+                        @Html.TextBoxFor(Model => Model.Email, new { @id = "emailContact", @name = "emailContact", @class = "form-control contact-us-form-control", maxlength = "50", @placeholder = "Email" })
+                        @Html.ValidationMessageFor(Model => Model.Email, null, new { @class = "text-danger" })
+                    </div>
+                </div>                    
+                <div class="row control-group">
+                    <div class="form-group col-xs-12">
+                        @Html.TextAreaFor(Model => Model.Mensaje, new { @id = "messageContact", @name = "messageContact", @class = "form-control contact-us-form-control", maxlength = "500", @placeholder = "Mensaje" })
+                        @Html.ValidationMessageFor(Model => Model.Mensaje, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br>
+
+                <div class="row control-group">
+                    <div class="form-group col-xs-12">
+                        <div id="contact-recaptcha" class="g-recaptcha" data-sitekey="6LeWK3EUAAAAAJULEl1ZNyKEHLiJG1_HTsjWu6vn" 
+                             style="transform:scale(0.95);-webkit-transform:scale(0.95);transform-origin:0 0;-webkit-transform-origin:0 0"></div>
+                        <span id="contact-recaptcha-error" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-xs-12">
+                        <button id="btnSubmit" data-loading-text="Enviando..." type="submit" class="btn" style="width:100%;
+                                                                                                                border:2px solid #008a69;
+                                                                                                                color:#008a69;
+                                                                                                                text-transform:uppercase;
+                                                                                                                background-color:white;
+                                                                                                                font-weight:bold;">
+                            Enviar
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+
+    function beginPost() {
+        if ($("#formContacto .g-recaptcha-response").val() === null || $("#formContacto .g-recaptcha-response").val() === "") {
+            $("#contact-recaptcha-error").html("Debes chequear casilla de verificación");
+            return false;
+        }
+        $("#contact-recaptcha-error").html('');
+
+        $('#btnSubmit').button('loading');
+        $('#formContacto').find('.alert').remove();
+    }
+
+    function successCallback(data) {
+        if (data.success) {
+            $('#formContacto').trigger('reset');
+            $('#btnSubmit').before('<div class="alert alert-success" role="alert">Su mensaje ha sido enviado, nos contactaremos con usted a la brevedad</div>')
+            $('#btnSubmit').button('reset');
+        }
+        else {
+            errorCallback(data);
+        }
+    }
+
+    function errorCallback(data) {
+        $('#btnSubmit').before('<div class="alert alert-danger" role="alert">' + data.message + '</div>')
+        $('#btnSubmit').button('reset');
+    }
+</script>

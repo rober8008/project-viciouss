@@ -1,0 +1,23 @@
+﻿@model ctaWEB.Models.DashboardModel
+
+<div id="dashboard_delete_portfolio" style="width:100%;">
+    @using (Ajax.BeginForm("DashboardDeletePortfolio", "Dashboard", new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        //UpdateTargetId = "dashboard_content",
+        LoadingElementId = "updating_dashboard2",
+        OnSuccess = "OnSuccessDeletePortfolio(data, status, xhr)",
+        OnBegin = "$('#submit_delete_porfolio').disabled = true;",
+        OnComplete = "$('#submit_delete_porfolio').disabled = false;"
+    }, new { @class = "add_portfolio" }))
+    {
+        @Html.HiddenFor(m => m.Username)
+        <fieldset>
+            @Html.DropDownListFor(m => m.Portfolio_Name,
+                                      new SelectList(Model.dashboard_content.Dashboard.DashboardItems, "Portfolio", "Portfolio"),
+                                      new {style="width:103px;height:26px;"})
+            @Html.ValidationMessageFor(m => m.Portfolio_Name)            
+            <input id="submit_delete_porfolio" type="submit" value="Enviar" />            
+        </fieldset>
+    }
+</div>

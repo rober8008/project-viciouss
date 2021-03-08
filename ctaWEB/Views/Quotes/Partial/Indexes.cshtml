@@ -1,0 +1,9 @@
+﻿@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+}
+
+@*use el de opciones pork es el mismo*@
+<div class="container">
+    <h2 style="color:#008a69">Indices</h2>
+    @Html.Partial("~/Views/Quotes/Partial/OptionsWidget.cshtml", new ctaWEB.Models.QuotesSharesModel(4, null))
+</div> 

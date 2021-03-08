@@ -1,0 +1,185 @@
+﻿@{
+    ViewBag.Title = "Suscripciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* MAIN SECTION *@
+<div style="background: url(../../Images/Rates/bkgimg_PageHeader.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            height:auto;
+            padding-top: 40px;
+            padding-bottom: 50px;">    
+    <div class="row" style="margin-top:35px;margin-right:0px;">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="row" style="margin-right:0px;margin-bottom:20px;">
+                <div class="col-lg-12 text-center">
+                    <h2 style="color: #ffffff;
+                           font-size: 2.5em;">
+                        ¡El Primer Mes es Gratis!
+                    </h2>
+                    <h2 style="color: #ffffff;
+                           font-size: 2.0em;">
+                        Elegí tu plan y accedé a todos nuestros servicios gratis por un mes.
+                    </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-offset-1 col-lg-10">
+                    <div class="col-lg-4 text-center wow fadeInDown" style="padding:5px;">
+                        <div style="background-color:white;height:100%;padding:20px;font-size:1.35em;background-color:#e0e1e3;">
+                            <h2 style="color:#333333;font-weight:bold;margin-top:0px;">Probá un Mes</h2>
+                            <h2 style="color:#333333;font-weight:bold;margin-top:0px;">GRATIS</h2>
+                            <p>&nbsp;</p>
+                            <p class="text-center">Watchlists y Análisis Técnico de Activos</p>
+                            <p class="text-center">Acceso a Reportes e Informes</p>
+                            <p class="text-center">Contenido Exclusivo</p>
+                            <p class="text-center">Alertas y Noticias de Mercado</p>
+
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p class="text-center" style="font-weight:bold;font-size:1.5em;">&nbsp;</p>
+                            <a href="@Url.Action("Register", "User")" class="btn btn-lg da-link" style="background-color:#ffcd48;
+                                                                                                    border-radius:9px;
+                                                                                                    color:#000000;
+                                                                                                    width:auto;
+                                                                                                    font-weight:bold;">
+                                Registrate Ahora
+                            </a>
+                            <p style="font-size:0.75em;">&nbsp;</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-center wow fadeInUp" style="padding:5px;font-size:1.35em;">
+                        <div style="background-color:white;height:100%;padding:20px;">
+                            <h2 style="color:#333333;font-weight:bold;margin-top:0px;">Viciouss PRO</h2>
+                            <h2 style="color:#333333;font-weight:bold;margin-top:0px;">(Mensual)</h2>
+                            <p>&nbsp;</p>
+                            <p class="text-center">Watchlists y Análisis Técnico de Activos</p>
+                            <p class="text-center">Acceso a Reportes e Informes</p>
+                            <p class="text-center">Contenido Exclusivo</p>
+                            <p class="text-center">Alertas y Noticias de Mercado</p>
+
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p class="text-center" style="font-weight:bold;font-size:1.5em;">$699</p>
+                            @*<a mp-mode="dftl" href="https://www.mercadopago.com/mla/debits/new?preapproval_plan_id=591076e609404773942c310df858f9bc" name="MP-payButton" class="btn btn-lg da-link"
+                   style="background-color:#ba2b2f;
+                           border-radius:9px;
+                           color:#ffffff;
+                           width:auto;
+                           text-transform:uppercase;
+                           font-weight:bold;">
+                    Suscribirse Ahora
+                </a>*@
+                            <a href="https://www.mercadopago.com/mla/debits/new?preapproval_plan_id=591076e609404773942c310df858f9bc" target="_blank" class="btn btn-lg da-link"
+                               style="background-color:#ba2b2f;
+                                   border-radius:9px;
+                                   color:#ffffff;
+                                   width:auto;
+                                   text-transform:uppercase;
+                                   font-weight:bold;">
+                                Suscribirse Ahora
+                            </a>
+                            <script type="text/javascript">
+                                (function () {
+                                    function $MPC_load() {
+                                        window.$MPC_loaded !== true && (function () {
+                                            var s = document.createElement("script");
+                                            s.type = "text/javascript";
+                                            s.async = true;
+                                            s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js";
+                                            var x = document.getElementsByTagName('script')[0];
+                                            x.parentNode.insertBefore(s, x);
+                                            window.$MPC_loaded = true;
+                                            console.log("====>", s);
+                                        })();
+                                    }
+                                    window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
+                                })();
+                            </script>
+                            <p class="text-center" style="font-size:0.75em;"><strong><i>*E-mail: debe ser el mismo que se usó para registrarse en Viciouss</i></strong></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-center wow fadeInDown" style="padding:5px;font-size:1.35em;">
+                        <div style="background-color:white;height:100%;padding:20px;">
+                            <h2 style="color:#333333;font-weight:bold;margin-top:0px;">Viciouss PRO</h2>
+                            <h2 style="color:#333333;font-weight:bold;margin-top:0px;">(Semestral)</h2>
+                            <p>&nbsp;</p>
+                            <p class="text-center">Watchlists y Análisis Técnico de Activos</p>
+                            <p class="text-center">Acceso a Reportes e Informes</p>
+                            <p class="text-center">Contenido Exclusivo</p>
+                            <p class="text-center">Alertas y Noticias de Mercado</p>
+
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p class="text-center" style="font-size:1.5em;"><strong>¡25% DE DESCUENTO!</strong></p>
+                            <p class="text-center" style="font-weight:bold;font-size:1.5em;">$3149</p>
+                            @*<a mp-mode="dftl" href="https://www.mercadopago.com/mla/debits/new?preapproval_plan_id=a823d4096b8547bcafde81ddbd8585b4" name="MP-payButton" class="btn btn-lg da-link"
+                   style="background-color:#ba2b2f;
+                          border-radius:9px;
+                          color:#ffffff;
+                          width:auto;
+                          text-transform:uppercase;
+                          font-weight:bold;">
+                    Suscribirse Ahora
+                </a>*@
+                            <a href="https://www.mercadopago.com/mla/debits/new?preapproval_plan_id=a823d4096b8547bcafde81ddbd8585b4" target="_blank" class="btn btn-lg da-link"
+                               style="background-color:#ba2b2f;
+                                  border-radius:9px;
+                                  color:#ffffff;
+                                  width:auto;
+                                  text-transform:uppercase;
+                                  font-weight:bold;">
+                                Suscribirse Ahora
+                            </a>
+                            <script type="text/javascript">
+                                (function () {
+                                    function $MPC_load() {
+                                        window.$MPC_loaded !== true && (function () {
+                                            var s = document.createElement("script");
+                                            s.type = "text/javascript";
+                                            s.async = true;
+                                            s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js";
+                                            var x = document.getElementsByTagName('script')[0];
+                                            x.parentNode.insertBefore(s, x);
+                                            window.$MPC_loaded = true;
+                                            console.log("====>", s);
+                                        })();
+                                    }
+                                    window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
+                                })();
+                            </script>
+                            <p class="text-center" style="font-size:0.75em;"><strong><i>*E-mail: debe ser el mismo que se usó para registrarse en Viciouss</i></strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="background: url(../../Images/Rates/bkgimg_SubscriptionDetails.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            height:auto;
+            padding-top: 40px;
+            padding-bottom: 50px;">
+    <div class="row" style="margin-right:0px;">
+        <div class="col-lg-offset-2 col-lg-8">
+            <h1 style="color:#008a69;font-weight:bold;margin-top:0px;">Con la Suscripción Obtendrás</h1>
+            <p style="color:#1e1e1e;font-size:1.75em;"><img src="~/Images/Rates/icon_check.png" width="32" height="32" style="vertical-align: bottom;"/>Newsletter con las noticias más relevantes</p>
+            <p style="color:#1e1e1e;font-size:1.75em;"><img src="~/Images/Rates/icon_check.png" width="32" height="32" style="vertical-align: bottom;" />Pre-Market todos los días a tu celular</p>
+            <p style="color:#1e1e1e;font-size:1.75em;"><img src="~/Images/Rates/icon_check.png" width="32" height="32" style="vertical-align: bottom;" />Alertas de mercado a tu celular</p>
+            <p style="color:#1e1e1e;font-size:1.75em;"><img src="~/Images/Rates/icon_check.png" width="32" height="32" style="vertical-align: bottom;" />Acceso a los reportes diarios</p>
+            <p style="color:#1e1e1e;font-size:1.75em;"><img src="~/Images/Rates/icon_check.png" width="32" height="32" style="vertical-align: bottom;" />Acceso a los informes especiales mensuales y trimestrales</p>
+            <p style="color:#1e1e1e;font-size:1.75em;"><img src="~/Images/Rates/icon_check.png" width="32" height="32" style="vertical-align: bottom;" />Acceso Ilimitado a los activos en tu watchlist</p>
+            <p style="color:#1e1e1e;font-size:1.75em;"><img src="~/Images/Rates/icon_check.png" width="32" height="32" style="vertical-align: bottom;" />Acceso Ilimitado a los indicadores de análisis técnico</p>
+            <p style="color:#1e1e1e;font-size:1.75em;"><img src="~/Images/Rates/icon_check.png" width="32" height="32" style="vertical-align: bottom;" />Acceso Ilimitado a los activos en tu portfolio de inversión</p>
+        </div>
+    </div>
+</div>
+
+@* CONTACT US *@
+@Html.Partial("~/Views/Shared/Partial/ContactUs.cshtml")

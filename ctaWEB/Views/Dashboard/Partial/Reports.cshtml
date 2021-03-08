@@ -1,0 +1,49 @@
+﻿@model Dictionary<string, List<ctaCOMMON.Dashboard.DashboardReport>>
+
+<ul id="filters" class="nav nav-tabs" role="tablist" style="margin-bottom:5px;">
+    @{
+        foreach (var reportType in Model.Keys)
+        {                
+            <li>
+                <a href="#@reportType.Replace(' ','_')" data-toggle="tab" class="tab-portfolio-selector">@reportType</a>
+            </li>                           
+        }
+    }
+</ul>
+<div class="tab-content">
+    @{            
+        foreach (var reportType in Model.Keys)
+        {
+            <div class="tab-pane fade" id="@reportType.Replace(' ', '_')">                    
+                @{
+                    var reports = Model[reportType];
+                    reports.Reverse();
+                    foreach (var report in reports)
+                    {
+                        <div class="container" >                        
+                            <div class="col-md-12" style="border:solid 1px #E4E4E4;margin-top:20px;margin-bottom:20px;border-radius:5px;">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <h3 style="color:#008a69">
+                                            <i>@report.title</i>
+                                        </h3>
+                                    </div>
+                                    <div class="col-md-2 text-center">
+                                        <h3>
+                                            <a href="@report.url" target="_blank" style="font-size:14px;color:#ffffff;padding:10px;background-color:#008a69;border-radius:2px;" title="Open Report">VER INFORME</a>
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 portfolio-symbol-name">
+                                        @report.description
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>            
+        }
+    }
+</div>

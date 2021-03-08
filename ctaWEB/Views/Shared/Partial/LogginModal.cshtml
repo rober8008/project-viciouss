@@ -1,0 +1,208 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<!-- Modal -->
+<div class="modal fade" id="logginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document" style="width:362px">
+        <div class="modal-content">            
+            <form id="modal_loggin_form" class="form-signin wow fadeInUp" action="@Url.Action("DoModalLogin", "User")" method="post">                
+                <div class="login-wrap">
+                    <div class="form-group">
+                        <p style="font-weight:bold;
+                                          text-align:left;
+                                          color:#1c1c1c;">
+                            <span style="letter-spacing:8px;text-transform:uppercase;">Log In</span> <span style="vertical-align:super;">________________</span>
+                        </p>
+                        <h3 class="text-left" style="color:#008a69;
+                                                             font-weight:bold;
+                                                             margin-top:0px;
+                                                             font-size:1.85em;">
+                            Bienvenido a tu Cuenta
+                        </h3>
+                    </div>
+                    <div class="form-group" id="login_username_group">
+                        <input type="text" class="form-control contact-us-form-control" placeholder="@ctaWEB.App_GlobalResources.Modals.User_Name" id="username" name="modalusernameLoginModal">
+                    </div>
+                    <div class="form-group" id="login_password_group">
+                        <input type="password" class="form-control contact-us-form-control" placeholder="@ctaWEB.App_GlobalResources.Modals.Password" id="password" name="modalpasswordLoginModal">
+                    </div>
+
+                    <div class="g-recaptcha" data-sitekey="6LeWK3EUAAAAAJULEl1ZNyKEHLiJG1_HTsjWu6vn" style="transform:scale(0.95);-webkit-transform:scale(0.95);transform-origin:0 0;-webkit-transform-origin:0 0"></div>
+                    <span id="modalvalCaptLoginFormModal" class="text-danger"></span>
+                    <div id="error_group_form_login_modal" class="help-block alert alert-danger" style="display: none;"></div>                                       
+
+                    <div style="width:100%;" id="spin">
+                        <button class="btn btn-lg btn-login" type="submit" id="modal_submit_loggin" style="width:100%;
+                                                                                                           border:2px solid #008a69;
+                                                                                                           color:#008a69;
+                                                                                                           text-transform:uppercase;
+                                                                                                           background-color:white;
+                                                                                                           font-weight:bold;">
+                            Iniciar
+                        </button>
+                    </div>
+
+                    <label class="checkbox" style="margin:0px;">
+                        @*<input type="checkbox" value="remember-me"> @ctaWEB.App_GlobalResources.Modals.Remember_Me*@
+                        <span class="pull-right">
+                            <a data-toggle="modal" data-dismiss="modal" data-target="#forgotPasswordModal"> @ctaWEB.App_GlobalResources.Modals.Forgot_Password</a>
+                        </span>
+                    </label>
+                    
+                    <div class="registration pull-right" style="margin-bottom:10px;">
+                        @ctaWEB.App_GlobalResources.Modals.DontHave_Account
+                        <a style="cursor:pointer;" data-toggle="modal" data-dismiss="modal" data-target="#registerModal">
+                            @ctaWEB.App_GlobalResources.Modals.Register_Now
+                        </a>
+                    </div>
+                    <br />
+
+                    <!-- social buttons -->
+                    <div class="box">
+                        <div class="box-body">
+                            <a onclick="return ingresar();" class="btn btn-block btn-social btn-facebook" style="color:white">
+                                <i class="fa fa-facebook"></i> @ctaWEB.App_GlobalResources.Modals.SignIn_Facebook
+                            </a>
+                        </div>
+                    </div>                    
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#logginModal').on('shown.bs.modal', function () {
+            $('#username').focus()
+        });
+
+        $('#logginModal').on('hidden.bs.modal', function () {  //cleaning the modal on close
+            $('#login_username_group').removeClass('has-error'); // remove the error class
+            $('#login_password_group').removeClass('has-error');
+            $('#login_error_group').removeClass('has-error');
+            $('.help-block').remove(); // remove the error text
+            $('#username').val('');
+            $('#password').val('');
+        });
+    });
+
+    $('#modal_loggin_form').submit(function (event) {
+
+        if ($("#modal_loggin_form .g-recaptcha-response").val() === null || $("#modal_loggin_form .g-recaptcha-response").val() === "") {
+            $("#modalvalCaptLoginFormModal").html("Debes chequear casilla de verificación");
+            return false;
+        }
+        $("#modalvalCaptLoginFormModal").html('');
+        $('#error_group_form_login_modal').hide();
+
+        $form = $(this);
+
+        var target = document.getElementById('spin');
+        var spinner = new Spinner().spin(target);
+
+        // get the form data
+        // there are many ways to get this data using jQuery (you can use the class or id also)
+        var formData = {
+            'username': $('input[name=modalusernameLoginModal]').val(),
+            'password': $('input[name=modalpasswordLoginModal]').val()
+        };
+
+        // process the form
+        $.ajax({
+            type        : $form.attr('method'), // define the type of HTTP verb we want to use (POST for our form)
+            url         : $form.attr('action'), // the url where we want to POST
+            data        : formData, // our data object
+            dataType    : 'json', // what type of data do we expect back from the server
+            encode: true,
+            beforeSend: function (data) {
+                $('#modal_submit_loggin').button('loading');
+            }
+        })
+        .done(function (data) {
+            $('#modal_submit_loggin').button('reset');
+            // here we will handle errors and validation messages
+            if (!data.success) {
+                if (data.error) {
+                    $('#error_group_form_login_modal').html(data.message).show();
+                    spinner.spin(false);
+                }
+            }
+            else {
+                window.location = data.url;
+            }
+        })
+        .fail(function (data) {
+            $('#modal_submit_loggin').button('reset');
+            // show any errors
+            // best to remove for production
+            console.log(data);
+            spinner.spin(false);
+        });
+        // stop the form from submitting the normal way and refreshing the page
+        event.preventDefault();
+    });
+
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '321816401537142', //id de app de prueba 322827904769325
+            xfbml: true,
+            version: 'v2.8'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function ingresar() {
+
+        FB.login(function (response) {
+            validarUsuario();
+        }, { scope: 'public_profile, email' });
+    }
+
+    function validarUsuario() {
+
+        FB.getLoginStatus(function (response) {
+
+            var target = document.getElementById('spin');
+            var spinner = new Spinner().spin(target);
+
+            if (response.status == 'connected') {
+                FB.api('/me?fields=email,first_name', function (response) {
+                    var formData = {
+                        'username': response.first_name + response.id.slice(-4),
+                        'email': response.email
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("DoFacebookLogin", "User")',
+                        data: formData,
+                        dataType: 'json',
+                        encode: true
+                    })
+                    .done(function (data) {
+                        window.location = data.url;
+                    });
+                });
+            } //sino se pudo conectar quito el spinner
+            else {
+                spinner.spin(false);
+            }
+        });
+    }
+
+</script>
+
+

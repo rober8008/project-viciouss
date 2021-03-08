@@ -1,0 +1,34 @@
+﻿@model ctaWEB.Models.AddShapeModel
+
+<div class="col-md-offset-10 col-md-1" style="padding-left:10px;">
+    <a href="#" id="closeX2" onclick="javascript: $('#add_shape_form').hide(); $('#closeX2').hide();" style="display:none;"><span class="glyphicon glyphicon-remove-circle"></span></a>
+</div>
+<div id="add_shape_form" style="display:none; border: 1px solid #cccccc; padding: 10px; border-radius: 5px;">
+    @using (Ajax.BeginForm("AddShape", "Dashboard", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "OnSuccessAddShape(data, status, xhr)" }))
+    {
+        @Html.HiddenFor(m => m.username)
+        @Html.HiddenFor(m => m.id_shape, new { id = "shape_id" })
+        @Html.HiddenFor(m => m.id_portfolio)
+        @Html.HiddenFor(m => m.id_symbol)
+        @Html.HiddenFor(m => m.color, new { id = "shape_color" })
+        @Html.HiddenFor(m => m.date1, new { id = "shape_date1" })
+        @Html.HiddenFor(m => m.date2, new { id = "shape_date2" })
+        @Html.HiddenFor(m => m.value1, new { id = "shape_value1" })
+        @Html.HiddenFor(m => m.value2, new { id = "shape_value2" })
+        <div class="col-md-12">
+            <div class="input-group" style="width:200px;">
+                <span class="input-group-addon" id="basic-addon1">Nombre:</span>
+                @Html.TextBoxFor(m => m.name, new { id = "rect_name", @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-12">            
+            <div id="cp4" class="input-group" style="width:200px;border-left-width:1px;border-left-style:solid;border-left-color:#cccccc;">
+                <input id="rect_color" type="text" class="form-control" pick-a-color-label-id="COLOR:" style="cursor:not-allowed;background-color:#eee;display:none" />                
+                <span id="rect_color_picker" class="input-group-addon" style="cursor:pointer;"><i></i></span>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top:5px;">
+            <button id="save_shape" type="submit" class="btn btn-xs" style="background-color:#147063;color:white;display:none;"> <i class="glyphicon glyphicon-send"></i> Enviar</button>
+        </div>
+    }
+</div>

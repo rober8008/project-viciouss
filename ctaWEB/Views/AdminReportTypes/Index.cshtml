@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ctaCOMMON.AdminModel.ReportTypeModel>
+@Html.AntiForgeryToken()
+
+@{
+    ViewBag.Title = "ReportTypes Admin";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<head>
+    @Scripts.Render("~/bundles/knockout/admin-report-types")
+</head>
+
+<div id="admin-report-type-container">
+    <button class="btn btn-primary kout-create">Create</button>
+    <table class="table">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                name
+            </th>
+            <th>
+                active
+            </th>
+            <th></th>
+        </tr>
+        <tbody data-bind="foreach: reportTypeCollection">
+            <tr data-bind="template: { name: Mode, data: $data }"></tr>
+        </tbody>
+    </table>
+
+    <script type="text/html" id="display">
+        <td data-bind="text: Id"></td>
+        <td data-bind="text: name"></td>
+        <td data-bind="text: active"></td>
+        <td>
+            <button class="btn btn-success kout-edit">Edit</button>
+        </td>
+    </script>
+
+    <script type="text/html" id="edit">
+        <td data-bind="text: Id"></td>
+        <td><input type="text" data-bind="value: name" /></td>
+        <td><input type="checkbox" data-bind="checked: active, value: active" /></td>
+        <td>
+            <button class="btn btn-success kout-update">Update</button>
+            <button class="btn btn-danger kout-cancel">Cancel</button>
+        </td>
+    </script>
+</div>

@@ -1,0 +1,12 @@
+﻿@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+}
+
+@*at loading bring the SOBERANOS*@
+
+<div class="container">
+    <h2 style="color:#008a69">Bonos</h2>
+    <div id="quotes_boxes">
+        @Html.Partial("~/Views/Quotes/Partial/BondsWidget.cshtml", new ctaWEB.Models.QuotesSharesModel(2, 8))
+    </div>
+</div> 

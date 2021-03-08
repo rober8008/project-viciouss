@@ -1,0 +1,29 @@
+﻿@model ctaWEB.Models.PortfolioAddSymbolModel
+
+<div id="@Model.Portfolio_Id" style="width:100%;">
+    @using (Ajax.BeginForm("PortfolioAddSymbol", "Dashboard", new AjaxOptions() { HttpMethod = "POST", @*UpdateTargetId = "dashboard_content",*@ LoadingElementId = "updating_dashboard", OnSuccess = "OnSuccessAddSymbolToPortfolio(data, status, xhr)" }, new { @class = "add_title" }))
+    {        
+        <fieldset style="border-bottom:1px solid #e5e5e5;padding: 0 0 10px 0;">
+            <div id="spinner_container_@Model.Portfolio_Id">
+                <!--<legend>Agregar nuevo Título</legend>-->
+                @Html.HiddenFor(m => m.Portfolio_Id, new { id = Model.Portfolio_Id })
+                @Html.HiddenFor(m => m.Symbol_Id, new { id = "symbol_id_" + Model.Portfolio_Id })
+                @Html.HiddenFor(m => m.Username)
+                <div class="col-md-8">
+                    <input id="symbol_text_@Model.Portfolio_Id" type="text" placeholder="Símbolo..." />
+                    @Html.ValidationMessageFor(m => m.Symbol_Id)
+                </div>
+                <div class="col-md-4">
+                    <input id="portfolioAddStockSubmitBtn_@Model.Portfolio_Id" type="submit" value="Agregar" />
+                </div>
+            </div>            
+        </fieldset>        
+    }
+</div>
+
+<style type="text/css">
+    .add_title {
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+</style>

@@ -1,0 +1,21 @@
+﻿@model ctaWEB.Models.DashhboardAddPortfolioModel
+
+<div id="dashboard_add_portfolio" style="width:100%;">
+    @using (Ajax.BeginForm("DashboardAddPortfolio", "Dashboard", new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        //UpdateTargetId = "dashboard_content",        
+        LoadingElementId = "updating_dashboard2",
+        OnSuccess = "OnSuccessAddPortfolio(data, status, xhr)",
+        OnBegin = "$('#submit_add_porfolio').disabled = true;",
+        OnComplete = "$('#submit_add_porfolio').disabled = false;"
+    }, new { @class = "add_portfolio" }))
+    {
+        <fieldset>
+            @Html.HiddenFor(m => m.username)
+            @Html.TextBoxFor(m => m.Portfolio_Name, new { placeholder = "Nombre" })
+            @Html.ValidationMessageFor(m => m.Portfolio_Name)
+            <input id="submit_add_porfolio" type="submit" value="Enviar" />            
+        </fieldset>
+    }
+</div>

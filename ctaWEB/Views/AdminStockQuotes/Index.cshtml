@@ -1,0 +1,253 @@
+﻿@model IEnumerable<ctaWEB.Models.AdminModels.AdminStockQuotesModel>
+
+@{
+    ViewBag.Title = "Stock Quotes Administration";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<p style="border: 1px dashed green;float:left;margin:10px">
+    @Html.ActionLink("Create New", "Create")    
+</p>
+<h4 style="clear: left;"></h4>
+
+<div id="spinnerContainer" style="border: solid 1px #808080;padding:10px;float:left;margin: 10px;float:left;">
+    <h4 style="font-size:large;color:#147063">SYNCHRONIZATION STATUS</h4>
+    <table>
+        <tr>
+            <th><button class="RunIntradiaryUpdate btn-success" market-name="ALL" title="Update All markets"><b><span class="glyphicon glyphicon-download-alt"></span></b></button></th>
+            <th>Market</th>
+            <th>LastSync</th>
+            <th>NextSync</th>
+            <th><button class="ClearIntradiary btn-danger" market-name="ALL" title="Delete All markets Intradiary"><b><span class="glyphicon glyphicon-trash"></span></b></button></th>
+        </tr>
+    @foreach (ctaSERVICES.MarketSyncInfo item in ViewBag.SyncMarketInfo)
+    {
+        <tr>
+            <td><button class="RunIntradiaryUpdate" market-name="@item.Market" title="Update @item.Market" style="color:#5cb85c;"><span class="glyphicon glyphicon-download-alt"></span></button>&nbsp;&nbsp;</td>
+            <td><b>@item.Market</b>&nbsp;&nbsp;</td>
+            <td style="color:green">@item.LastSync&nbsp;&nbsp;</td>
+            <td style="color:orangered">@item.NextSync&nbsp;&nbsp;</td>
+            <td><button class="ClearIntradiary" market-name="@item.Market" title="Delete @item.Market Intradiary" style="color:#d9534f;"><span class="glyphicon glyphicon-trash"></span></button>&nbsp;&nbsp;</td>
+        </tr>
+    }
+    </table>
+</div>
+<h4 style="clear: left;"></h4>
+
+<div style="border: solid 1px #808080;padding:10px;float:left;margin: 10px;">
+    <h4 style="font-size:large;color:#147063">UPDATE HISTORICAS FROM CSV FILE</h4>
+    <h6>* CSV less than 1MB</h6>
+    <h6>* CSV file name have to be Market Name</h6>
+    <h6>* CSV file only can contains stocks that belongs to one Market</h6>
+    @using (Html.BeginForm("ReadDataFromCSV",
+                            "AdminStockQuotes",
+                            FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))
+    {
+        <label for="csvdatafile" style="float:left;">Select CSV File:</label>
+        <input type="file" name="csvdatafile" id="csvdatafile" style="float:left;"/><input type="submit" value="ENVIAR" style="float:left;" />    
+    }
+</div>
+<h4 style="clear: left;"></h4>
+
+<div style="border: solid 1px #808080;margin:10px;float:left;">
+    &nbsp;<b style="font-size:large;color:#147063">UPDATE HISTORICAS:</b>&nbsp;  
+    &nbsp;Symbol:&nbsp;@Html.DropDownList("stock_id", null, htmlAttributes: new { id = "stocks" })
+    &nbsp;Start Date:&nbsp;<input type="date" id="startdate" />
+    &nbsp;End Date:&nbsp;<input type="date" id="enddate" />
+    &nbsp;<button class="RunHistoricalUpdate" style="color:#147063"><b>UPDATE</b></button>&nbsp;
+</div>
+<h4 style="clear: left;"></h4>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminStocksModel.symbol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.opening)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.closing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.minimun)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.maximun)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.volume)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_round)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adj_close)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminStocksModel.symbol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.opening)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.closing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.minimun)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.maximun)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.volume)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_round)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adj_close)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        $('.RunHistoricalUpdate').click(function () {
+            ShowSpinner();
+            DisableButton($(this));
+            var selected = '';
+            $("select option:selected").each(function () {
+                selected = $(this).attr('value');
+            });
+            $.post('@Url.Action("ScheduleHistoryTask", "VcssTaskManager")',
+                {
+                    stockid: selected,
+                    startdate: $('#startdate').val(),
+                    enddate: $('#enddate').val()
+                },
+                function (data, status) {
+                    if (data.Success) {
+                            alert(data.TaskInfoId + " escheduled.\nStatus: " + status);
+                        }
+                    else {
+                        alert("ERROR!!!\nMessage: " + data.Message);
+                    }                    
+                    HideSpinner();
+                    EnableButton();                                     
+                });
+        });
+        $('.RunIntradiaryUpdate').click(function () {
+            ShowSpinner();
+            DisableButton($(this));
+            var marketname = $(this).attr('market-name')
+            if (marketname == 'ReportDATA') {
+                $.post('@Url.Action("RunDailyReportUpdate")',
+                    {
+                        batch: "Batch-1"
+                    },
+                    function (data, status) {
+                        $.post('@Url.Action("RunDailyReportUpdate")',
+                            {
+                                batch: "Batch-2"
+                            },
+                            function (data, status) {
+                                $.post('@Url.Action("RunDailyReportUpdate")',
+                                    {
+                                        batch: "Batch-3"
+                                    },
+                                    function (data, status) {
+                                        $.post('@Url.Action("RunDailyReportUpdate")',
+                                            {
+                                                batch: "Batch-4" 
+                                            },
+                                            function (data, status) {
+                                                $.post('@Url.Action("RunDailyReportUpdate")',
+                                                {
+                                                    batch: "Batch-5" 
+                                                },
+                                                function (data, status) {
+                                                    $.post('@Url.Action("RunDailyReportUpdate")',
+                                                    {
+                                                        batch: "Batch-6" 
+                                                    },
+                                                    function (data, status) {
+                                                        alert(data + "\nStatus: " + status);
+                                                        HideSpinner();
+                                                        EnableButton();
+                                                    });
+                                                });
+                                            });
+                                    });
+                            });
+                    });
+            }
+            else {
+                $.post('@Url.Action("InitializeSchedulers", "VcssTaskManager")',
+                {},
+                function (data, status) {
+                    alert(data + "\nStatus: " + status);
+                    HideSpinner();
+                    EnableButton();
+                });
+            }
+        });
+        $('.ClearIntradiary').click(function () {
+            ShowSpinner();
+            DisableButton($(this));
+            var marketname = $(this).attr('market-name')
+            if (marketname == 'ReportDATA') {
+                $.post('@Url.Action("DeleteReportData")',
+                    function (data, status) {
+                        alert(data + "\nStatus: " + status);
+                        HideSpinner();
+                        EnableButton();
+                    });
+            }
+            else {
+                $.post('@Url.Action("ClearIntradiary")',
+                {
+                    market_name: $(this).attr('market-name')
+                },
+                function (data, status) {
+                    alert(data + "\nStatus: " + status);
+                    HideSpinner();
+                    EnableButton();
+                });
+            }
+        });
+    });
+
+    var spinner;
+    function ShowSpinner(){
+        spinner = new Spinner({ length: 40, radius: 20, left: '57%', top: '48%', color: '#147063' }).spin(document.getElementById("spinnerContainer"));
+    }
+    function HideSpinner() {
+        if (spinner)
+            spinner.spin(false);
+    }
+
+    var currentBtn;
+    function DisableButton(btn) {
+        currentBtn = btn;
+        currentBtn.attr("disabled", true);
+    }
+    function EnableButton() {
+        currentBtn.attr("disabled", false);
+    }
+</script>

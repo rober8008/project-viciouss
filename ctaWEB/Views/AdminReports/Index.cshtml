@@ -1,0 +1,102 @@
+﻿@model IEnumerable<ctaCOMMON.AdminModel.ReportModel>
+@Html.AntiForgeryToken()
+
+@{
+    ViewBag.Title = "Reports Admin";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<head>
+    @Scripts.Render("~/bundles/knockout/admin-report")
+</head>
+
+<div id="admin-report-container">
+    <div class="panel-default">
+        <div class="panel-heading">Report Filters</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="panel-default">
+                        <div class="panel-heading">Type</div>
+                        <div class="panel-body">
+                            <div class="btn-group" role="group" data-bind="foreach: reportTypeCollection">
+                                <button type="button" class="btn btn-default" data-bind="text: name, click: function() { reportTypeFilter(Id()); }"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="panel-default">
+                        <div class="panel-heading">Status</div>
+                        <div class="panel-body">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default" data-bind="click: function() { reportActiveFilter('active')}">Active</button>
+                                <button type="button" class="btn btn-default" data-bind="click: function() { reportActiveFilter('inactive')}">Inactive</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-1"><button type="button" class="btn btn-default" data-bind="click: function() { reportActiveFilter(false); reportTypeFilter(false);}">Clear Filters</button></div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary kout-create">Create</button>
+    <table class="table">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                title
+            </th>
+            <th>
+                description
+            </th>
+            <th>
+                url
+            </th>
+            <th>
+                typename
+            </th>
+            <th>
+                active
+            </th>
+            <th></th>
+        </tr>
+        <tbody data-bind="foreach: reportFileteredCollection">
+            <tr data-bind="template: { name: Mode, data: $data }"></tr>
+        </tbody>
+    </table>
+
+    <script type="text/html" id="display">
+        <td data-bind="text: Id"></td>
+        <td data-bind="text: title"></td>
+        <td data-bind="text: description"></td>
+        <td data-bind="text: url"></td>
+        <td data-bind="text: typename"></td>
+        <td data-bind="text: active"></td>
+        <td>
+            <button class="btn btn-success kout-edit">Edit</button>
+        </td>
+    </script>
+
+    <script type="text/html" id="edit">
+        <td data-bind="text: Id"></td>
+        <td><input type="text" data-bind="value: title" /></td>
+        <td><input type="text" data-bind="value: description" /></td>
+        <td><input type="text" data-bind="value: url" /></td>
+        <td>
+            <select data-bind="options: reportTypeCollection,
+                           optionsText: 'name',
+                           optionsValue: 'Id',
+                           value: type"></select>
+        </td>
+        <td><input type="checkbox" data-bind="checked: active, value: active" /></td>
+        <td>
+            <button class="btn btn-success kout-update">Update</button>
+            <button class="btn btn-danger kout-cancel">Cancel</button>
+        </td>
+    </script>
+</div>
+

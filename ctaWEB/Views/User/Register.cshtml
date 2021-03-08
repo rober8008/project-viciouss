@@ -1,0 +1,155 @@
+﻿@model ctaWEB.Models.RegisterModel
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* PAGE HEADER *@
+<div class="row text-center" style="background-color:#008a69;
+                                    color:#ffffff;
+                                    font-size:2.0em;
+                                    padding-top: 10px;
+                                    padding-bottom: 10px;
+                                    font-weight:bold;
+                                    margin: 0px;">
+    Regístrese Ahora
+</div>
+
+
+@* MAIN SECTION *@
+<div style="background: url(../../Images/Login/bkgimg_Login.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            height:auto;
+            padding-bottom: 50px;">
+    <div class="row" style="margin-right:0px;">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="row">
+                <div class="col-lg-offset-7 col-lg-4 text-center wow fadeInDown" style="padding:5px;">                    
+                    <form id="register_formPage" class="form-signin wow fadeInUp" action="@Url.Action("DoModalRegister", "User")" method="post">
+                        @Html.AntiForgeryToken()
+                        <div class="login-wrap" id="loggin_box">
+                            <div class="form-group">
+                                <p style="font-weight:bold;
+                                text-align:left;
+                                color:#1c1c1c;">
+                                    <span style="letter-spacing:8px;text-transform:uppercase;">Registro</span> <span style="vertical-align:super;">________________</span>
+                                </p>
+                                <h3 class="text-left" style="color:#008a69;
+                                                    font-weight:bold;
+                                                    margin-top:0px;
+                                                    font-size:1.85em;">
+                                    Introduzca sus datos
+                                </h3>
+                            </div>
+                            <div class="form-group" id="register_email_group">
+                                @Html.ValidationMessageFor(Model => Model.email, null, new { @class = "text-danger" })
+                                @Html.TextBoxFor(Model => Model.email, new { @class = "form-control contact-us-form-control", placeholder = @ctaWEB.App_GlobalResources.Modals.Email, Name = "emailRegisterPage" })
+                            </div>                                        
+                            <div class="" id="register_username_group">
+                                @Html.ValidationMessageFor(Model => Model.username, null, new { @class = "text-danger" })
+                                @Html.TextBoxFor(Model => Model.username, new { @class = "form-control contact-us-form-control", placeholder = @ctaWEB.App_GlobalResources.Modals.User_Name, Name = "usernameRegisterPage" })
+                            </div>
+                            <div class="" id="password_group">
+                                @Html.ValidationMessageFor(Model => Model.password, null, new { @class = "text-danger" })
+                                @Html.PasswordFor(Model => Model.password, new { @class = "form-control contact-us-form-control", placeholder = @ctaWEB.App_GlobalResources.Modals.Password, Name = "passwordRegisterPage" })
+                            </div>
+                            <div class="" id="repeat_password_group">
+                                @Html.ValidationMessageFor(Model => Model.repeat_password, null, new { @class = "text-danger" })
+                                @Html.PasswordFor(Model => Model.repeat_password, new { @class = "form-control contact-us-form-control", placeholder = @ctaWEB.App_GlobalResources.Modals.Retype_Password, Name = "repeat_passwordRegisterPage" })
+                            </div>
+                            <label class="checkbox">
+                                <input type="checkbox" value="agree this condition">
+                                <a href="http://viciouss.com/news/wp-content/uploads/2018/09/TC-Viciouss.com_.pdf" target="_blank" style="color:#1C1C1C;">
+                                    @ctaWEB.App_GlobalResources.Modals.Agree_Terms
+                                </a>
+                            </label>
+
+                            <div class="g-recaptcha" data-sitekey="6LeWK3EUAAAAAJULEl1ZNyKEHLiJG1_HTsjWu6vn" style="transform:scale(0.95);-webkit-transform:scale(0.95);transform-origin:0 0;-webkit-transform-origin:0 0"></div>
+                            <span id="valCaptRegisterForm" class="text-danger"></span>
+                            <div id="error_group_form" class="help-block alert alert-danger" style="display: none;"></div>
+
+                            <button class="btn" type="submit" id="submit_register_form" data-loading-text="Registrando..." style="width:100%;
+                                                                                                                                    border:2px solid #008a69;
+                                                                                                                                    color:#008a69;
+                                                                                                                                    text-transform:uppercase;
+                                                                                                                                    background-color:white;
+                                                                                                                                    font-weight:bold;">
+                                Registrar
+                            </button>                                        
+                            <div class="registration">
+                                @ctaWEB.App_GlobalResources.Modals.Already_Registered
+                                <a style="cursor:pointer;text-decoration:underline;" href="@Url.Action("Login","User")">
+                                    Entra Ahora
+                                </a>
+                            </div>
+                        </div>
+                    </form>                                                            
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $('#register_formPage').submit(function (event) {
+        if ($("#register_formPage .g-recaptcha-response").val() === null || $("#register_formPage .g-recaptcha-response").val() === "") {
+            $("#valCaptRegisterForm").html("Debes chequear casilla de verificación");
+            return false;
+        }
+        $("#valCaptRegisterForm").html('');
+        $('#error_group_form').hide();
+
+        $form = $(this);
+
+        // get the form data
+        // there are many ways to get this data using jQuery (you can use the class or id also)
+        var formData = {
+            'email': $('input[name=emailRegisterPage]').val(),
+            'username': $('input[name=usernameRegisterPage]').val(),
+            'password': $('input[name=passwordRegisterPage]').val(),
+            'repeat_password': $('input[name=repeat_passwordRegisterPage]').val()
+        };
+
+        // process the form
+        $.ajax({
+            type: $form.attr('method'), // define the type of HTTP verb we want to use (POST for our form)
+            url: $form.attr('action'), // the url where we want to POST
+            data: formData, // our data object
+            dataType: 'json', // what type of data do we expect back from the server
+            encode: true,
+            beforeSend: function (data) {
+                $('#submit_register_form').button('loading');
+            }
+        })
+            .done(function (data) {
+
+                $('#submit_register_form').button('reset');
+
+                //// here we will handle errors and validation messages
+                if (!data.success) {
+                    if (data.error) {
+                        //$('#register_username_group').addClass('has-error'); // add the error class to show red input
+                        //$('#register_password_group').addClass('has-error');
+                        $('#error_group_form').html(data.message).show();
+                        //$('#register_error_group').append('<div class="help-block alert alert-danger">' + data.message + '</div>'); // add the actual error message under our input
+                    }
+                }
+                else {
+                    window.location = data.url;
+                }
+            })
+            .fail(function (data) {
+
+                $('#submit_register_form').button('reset');
+                // show any errors
+                // best to remove for production
+                console.log(data);
+            });
+        // stop the form from submitting the normal way and refreshing the page
+        event.preventDefault();
+    });
+
+</script>

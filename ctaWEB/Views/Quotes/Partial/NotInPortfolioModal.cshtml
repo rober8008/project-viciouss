@@ -1,0 +1,28 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<!-- Modal -->
+<div class="modal fade" id="notInPortfolioModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document" style="width:362px">
+        <div class="modal-content">
+            <form class="form-signin wow fadeInUp">
+                <h2 class="form-signin-heading" style="background:#F6F6F6;color:#000000;">Acceso Incorrecto</h2>
+                <div class="login-wrap" style="padding-bottom:0px;padding-top:10px">
+                    <p style="color:#1C1C1C;">
+                        Para utilizar nuestras herramientas y poder guardar tus análisis ingresa desde <a href="@Url.Action("Index","Dashboard")"><strong>Watchlists</strong></a>
+                    </p>
+                    <div style="text-align:center;">
+                        <button class="btn btn-lg btn-login" style="width:138px;background:#CCCCCC;" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+</script>
+

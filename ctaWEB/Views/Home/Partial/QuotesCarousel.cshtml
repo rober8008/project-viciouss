@@ -1,0 +1,25 @@
+﻿@model ctaWEB.Models.QuotesCarouselModel
+
+<div style="height:30px;">
+    <div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 54px;">
+        <ul class="col-lg-2 col-md-4 col-sm-6 bxslider" style="width: 1715%; position: relative; left: -2347.52px;">
+            @foreach (var item in Model.QuotesList)
+            {
+                string variationColor = (item.Variation == 1) ? "green" : ((item.Variation == -1) ? "red" : "blue");
+                string variationIcon = (item.Variation == 1) ? "glyphicon-hand-up" : ((item.Variation == -1) ? "glyphicon-hand-down" : "glyphicon-minus");
+                        
+                <li style="float: left; list-style: none; position: relative; margin-top:-2px;">
+                    <div >
+                        <div style="float:left;margin-top:-3px;">                                    
+                            <a class="carousel-text" href="@Url.Action("Quote", "Quotes", new { symbol_id = item.Symbol_ID })" style="font-size:25px;">@item.Symbol</a>                                 
+                        </div>                        
+                        <div style="width:25%;float:left;margin-top:-3px;font-size:13px;margin-left:5px;">
+                            <span style="width:100%; float:left; color: white;font-weight: bold;margin-top:5px;">@string.Format("{0:N2}", item.LastTradePrize)</span>
+                            <span class="@variationColor" style="width: 100%; float: left;margin-top:-5px;">@string.Format("{0:N2}",item.PercentVariation)%</span>
+                        </div>
+                    </div>                                       
+                </li>
+            }  
+        </ul>
+    </div>
+</div>

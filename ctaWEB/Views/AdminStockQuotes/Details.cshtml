@@ -1,0 +1,83 @@
+﻿@model ctaWEB.Models.AdminModels.AdminStockQuotesModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AdminStockQuotesModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminStocksModel.symbol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminStocksModel.symbol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.opening)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.opening)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.closing)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.closing)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.minimun)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.minimun)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.maximun)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maximun)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_round)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_round)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adj_close)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adj_close)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

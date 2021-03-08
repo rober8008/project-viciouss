@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="wL35uz4CcDO0gJPoTCwI3ar2j0PPTSnh2y48pM1kqN0" />
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:400,600,700|Lato:400,700,900" rel="stylesheet">
+    @*
+        font-family: 'Catamaran', sans-serif;
+        font-family: 'Lato', sans-serif;
+    *@
+    <link rel="icon" type="image/ico" sizes="16x16" href="~/Images/icon/favicon.ico">
+    <title>VICIOUSS - @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    @RenderSection("scripts", required: false)
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="d8b748f6-0a89-4483-afcd-a708055666f6" type="text/javascript" async></script>
+    <script id="CookieDeclaration" src="https://consent.cookiebot.com/d8b748f6-0a89-4483-afcd-a708055666f6/cd.js" type="text/javascript" async></script>
+    <script type="text/javascript">
+        $(function () {
+
+            $('#da-slider').cslider({
+                autoplay: true,
+                bgincrement: 100
+            });
+
+        });
+    </script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+        });
+    </script>
+    <script>
+        $('.image-caption a').tooltip();
+
+        $(function () {
+
+            var filterList = {
+
+                init: function () {
+
+                    // MixItUp plugin
+                    // http://mixitup.io
+                    $('#portfoliolist-three').mixitup({
+                        targetSelector: '.portfolio',
+                        filterSelector: '.filter',
+                        effects: ['fade'],
+                        easing: 'snap',
+                        // call the hover effect
+                        onMixEnd: filterList.hoverEffect()
+                    });
+
+                },
+
+                hoverEffect: function () {
+                    $("[rel='tooltip']").tooltip();
+                    // Simple parallax effect
+                    $('#portfoliolist-three .portfolio .portfolio-hover').hover(
+                        function () {
+                            $(this).find('.image-caption').slideDown(250); //.fadeIn(250)
+                        },
+                        function () {
+                            $(this).find('.image-caption').slideUp(250); //.fadeOut(205)
+                        }
+                    );
+                }
+
+            };
+
+            // Run the show!
+            filterList.init();
+        });
+    </script>
+    <script>
+        $('a.info').tooltip();
+
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
+
+        jQuery(document).ready(function () {
+            jQuery('ul.superfish').superfish();
+        });
+
+        new WOW().init();
+    </script>
+    <script>
+        //posiciona el ticker en funcion de la aprecion del footer
+        function checkScroll() {
+
+            if (esVisible()) {
+                $('#space-ticker').addClass('container-ticker-end');
+                $('.ticker-home').addClass('endScrolling');
+
+            } else {
+                $('#space-ticker').removeClass('container-ticker-end');
+                $('.ticker-home').removeClass('endScrolling');
+            }
+
+
+        };
+
+        //Determina si el footer es visible dentro del navegador.
+        function esVisible() {
+            var visible = true;
+            var windowTop = $(document).scrollTop();
+            var windowBottom = windowTop + window.innerHeight;
+            var elementPositionTop = $('footer').offset().top;
+            var elementPositionBottom = elementPositionTop + $('footer').height();
+            if (elementPositionTop > windowBottom || elementPositionBottom < windowTop) {
+                visible = false;
+            }
+            return visible;
+        }
+
+        function renderTicker() {
+
+            $('.bxslider').show().bxSlider({
+                minSlides: 1,
+                maxSlides: 9,
+                slideWidth: 135,
+                slideHeight: 30,
+                slideMargin: 30,
+                ticker: true,
+                speed: 300000,
+                useCSS: false,
+                tickerHover: true,
+                //adaptiveHeight: true,
+                autoStart: false
+            });
+
+        };
+
+        function takeOffMaxwidth() {
+            $('.bx-wrapper').removeAttr('style');
+        };
+
+
+        var dfd = $.Deferred();
+        dfd.done([renderTicker, takeOffMaxwidth]);
+
+
+
+        $(document).ready(function () {
+
+            dfd.resolve();
+
+            if ($('.ticker-home').attr('id') == "location-not-home") {
+
+                $('footer').css('margin-bottom', $('.bxslider').height());
+            }
+
+        });
+
+
+        function checkScrollDos() {
+
+            if ($(window).scrollTop() == 0) {
+                $('.ticker-home').removeClass('endScrolling');
+                $('.ticker-home').addClass('scrolling');
+            }
+
+
+            $(window).scroll(function () {
+
+                if (($(window).scrollTop() + $(window).height() == $(document).height())) {
+
+                    if ($(window).width() < 975) {
+                        $('.ticker-home').removeClass('endScrolling');
+                        $('.ticker-home').addClass('scrolling');
+                    } else {
+                        $('.ticker-home').removeClass('scrolling');
+                        $('.ticker-home').addClass('endScrolling');
+                    }
+
+
+                } else {
+                    $('.ticker-home').removeClass('endScrolling');
+                    $('.ticker-home').addClass('scrolling');
+                }
+
+
+            });
+
+        }
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126841816-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-126841816-1');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-9395709516690537",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .row {
+            margin-left: 0px !important;
+            margin-right: 0px !important;
+        }
+    </style>
+
+</head>
+    <body style="font-size:12px;font-family: 'Lato', sans-serif;">
+        <div class="fullpageContainer">
+            <header class="head-section">
+                @Html.Partial("~/Views/Shared/Partial/Header.cshtml",
+                     new ctaWEB.Models.HeaderModel(System.Web.HttpContext.Current.User == null ? "" : System.Web.HttpContext.Current.User.Identity.Name))
+            </header>
+            <div class="contentContainer">
+                @RenderBody()
+            </div>
+            <footer>
+                @Html.Partial("~/Views/Shared/Partial/FooterLinks.cshtml")
+            </footer>
+            <footer class="footer-small">                
+                @Html.Partial("~/Views/Shared/Partial/Footer.cshtml")
+            </footer>
+        </div>
+        <!--common script for all pages-->
+        <script src="~/Scripts/common-scripts.js">
+        </script>   
+    </body>
+</html>

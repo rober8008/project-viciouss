@@ -1,0 +1,315 @@
+﻿@model ctaWEB.Models.DashboardModel
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet" />
+    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    @Scripts.Render("~/bundles/viciouss-watchlist-utils")
+</head>
+
+@* PAGE HEADER *@
+<div class="row text-center" style="background-color:#008a69;
+                                    color:#ffffff;
+                                    font-size:2.0em;
+                                    padding-top: 10px;
+                                    padding-bottom: 10px;
+                                    font-weight:bold;
+                                    margin: 0px;">
+    Dashboard
+</div> 
+
+<div class="container" style="margin-top:20px;">
+    <div class="col-lg-offset-1 col-lg-10">
+        <div class="col-lg-3">
+            <p><a href="#morning-brief" class="tab-portfolio-selector nav-link" data-toggle="pill" role="tab" style="font-size:1.75em;color:#008a69;font-weight:bold;">Tus Servicios</a></p>
+            <div class="panel-group wow fadeInUp" id="accordion" data-wow-duration="2s">
+                <!-- WATCHLIST -->
+                <div class="panel panel-default" style="background-color:#ffffff;">
+                    <div style="border: 1px solid #000000;border-radius: 3px;padding: 10px 0px;text-align: center;">
+                        <h4 class="panel-title">
+                            <a class="nav-link" style="color:#000000;font-size:16px;" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                WATCHLIST
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body panel-faq" style="padding-bottom:1px;">
+                            <ul id="tabs" class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical" style="display:flex;flex-direction:column;margin-bottom:5px;">
+                                @{
+                                    foreach (var watchlist in Model.dashboard_content.Dashboard.DashboardItems)
+                                    {
+                                        <li class="nav-item" role="presentation">
+                                            <a href="#@watchlist.Portfolio_Id" class="tab-portfolio-selector nav-link" data-toggle="pill" role="tab">@watchlist.Portfolio</a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                            <a href="#" class="nav-link" role="button" data-toggle="popover-add" data-placement="right" style="z-index:1;position:relative;font-size:1.25em;"><i class="fa fa-plus" title="Agregar Watchlist"></i></a>
+                            <a href="#" role="button" data-toggle="popover-delete" data-placement="left" style="z-index:1;position:relative;float:right;font-size:1.25em;"><i class="fa fa-times" title="Eliminar Watchlist"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- REPORTS -->
+                <div class="panel panel-default" style="background-color:#ffffff;">
+                    <div style="border: 1px solid #000000;border-radius: 3px;padding: 10px 0px;text-align: center;">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle text-content" style="color:#000000;font-size:16px;" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                REPORTES & INFORMES
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body panel-faq" style="padding-bottom:1px;">
+                            <ul id="tabs" class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical" style="display:flex;flex-direction:column;margin-bottom:5px;">
+                                @{
+                                    foreach (var report in Model.dashboard_content.Reports)
+                                    {
+                                        <li class="nav-item" role="presentation">
+                                            <a href="#@report.Key.Replace(' ','_')" class="tab-portfolio-selector nav-link" data-toggle="pill" role="tab">@report.Key</a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- COTIZACIONES -->
+                <div class="panel panel-default" style="background-color:#ffffff;">
+                    <div style="border: 1px solid #000000;border-radius: 3px;padding: 10px 0px;text-align: center;">
+                        <h4 class="panel-title">
+                            <a class="text-content" style="color:#000000;font-size:16px;" @*href="#collapseThree"*@ href="@Url.Action("Index","Quotes")">
+                                COTIZACIONES
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body panel-faq" style="padding-bottom:1px;">
+                            <p>COTIZACIONES - VICIOUSS </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- NOTICIAS -->
+                <div class="panel panel-default" style="background-color:#ffffff;">
+                    <div style="border: 1px solid #000000;border-radius: 3px;padding: 10px 0px;text-align: center;">
+                        <h4 class="panel-title">
+                            <a class="text-content" style="color:#000000;font-size:16px;" @*href="#collapseFour"*@ href="http://viciouss.com/news/">
+                                NOTICIAS
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse">
+                        <div class="panel-body panel-faq" style="padding-bottom:1px;">
+                            <p>NOTICIAS - VICIOUSS</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="tab-content" id="tabsContent">
+                <div id="morning-brief" class="tab-pane active" role="tabpanel" aria-labelledby="home-tab" style="width:100%;background-color:#f6f6f6;padding:30px 10px 10px 10px;">
+                    <div class="row">
+                        <div class="col-lg-12 text-center" style="font-size:1.75em;color:#008a69;font-weight:bold;margin-bottom:20px;">Mi Cuenta</div>
+                        <div class="col-lg-7">
+                            <p style="font-size:1.30em;color:#008a69;font-weight:bold;">Morning Brief</p>
+                            <p>@Html.Raw(Model.dashboard_content.MorningBrief)</p>
+                            <p>
+                                <a href="https://viciouss.com/news" style="border-bottom: 1px solid #008a69;font-size:1.15em;color:#008a69;font-weight:bold;">
+                                    Ir a Noticias &nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                                </a>
+                            </p>
+                        </div>
+                        <div class="col-lg-5">
+                            <p style="font-size:1.30em;color:#008a69;font-weight:bold;">Reportes Diarios</p>
+                            <p>@Html.Raw(Model.dashboard_content.DailyReportDescription)</p>
+                            <a href="@Url.Action("CreatePdf","Home", new { username = Model.Username })" class="btn btn-lg da-link" style="background-color:#ba2b2f;
+                                                                                            font-size:1.0em;
+                                                                                            border-radius:9px;
+                                                                                            color:#ffffff;
+                                                                                            width:auto;
+                                                                                            text-transform:uppercase;
+                                                                                            font-weight:bold;">
+                                Descargar Ahora
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @{
+                    //WATCHLIST - TABS CONTENT
+                    foreach (var watchlist in Model.dashboard_content.Dashboard.DashboardItems)
+                    {
+                        <div id="@watchlist.Portfolio_Id" class="tab-pane" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="col-md-12 text-center" style="margin-bottom:20px;">
+                                @foreach (var symbol in watchlist.Symbols)
+                                {
+                                    <span role="presentation">
+                                        | <a href="#" class="scrollTo" scrollto="@watchlist.Portfolio_Id@symbol.Symbol_ID">@symbol.Symbol_Name</a>
+                                    </span>
+                                }
+                                <span>
+                                    | <a id="popoverOpener_@watchlist.Portfolio_Id" data-toggle="popover-add-symbol-@watchlist.Portfolio_Id" data-placement="right" class="popover-add-symbol-opener" style="cursor:pointer;"><i class="fa fa-plus" title="Agregar Título al Wathlist"></i></a>
+                                </span>
+                                <div id="popover-add-symbol-@watchlist.Portfolio_Id-head" class="hide">
+                                    Agregar Título
+                                </div>
+                                <div id="popover-add-symbol-@watchlist.Portfolio_Id-content" class="hide">
+                                    @Html.Partial("~/Views/Dashboard/Partial/DashboardPortfolioAddSymbol.cshtml", new ctaWEB.Models.PortfolioAddSymbolModel() { Portfolio_Id = watchlist.Portfolio_Id, Username = System.Web.HttpContext.Current.User.Identity.Name })
+                                </div>
+                            </div>
+
+                            @foreach (var symbol in watchlist.Symbols)
+                            {
+                                if (symbol.Intradiary_Info.ChangePercent == -100)
+                                {
+                                    symbol.Intradiary_Info.ChangePercent = 0;
+                                    symbol.Intradiary_Info.Change = 0;
+                                }
+
+                                string variationColor = (symbol.Intradiary_Info.ChangePercent > 0) ? "green" : ((symbol.Intradiary_Info.ChangePercent < 0) ? "red" : "blue");
+                                string variationIcon = (symbol.Intradiary_Info.ChangePercent > 0) ? "glyphicon-hand-up" : ((symbol.Intradiary_Info.ChangePercent < 0) ? "glyphicon-hand-down" : "glyphicon-minus");
+                                <div id="delete_symbol" style="float:right;">
+                                    <a href="@Url.Action("PortfolioDeleteSymbol", "Dashboard", new { symbol_id = symbol.Symbol_ID, portfolio_id = watchlist.Portfolio_Id, username = System.Web.HttpContext.Current.User.Identity.Name })" style="padding-left:12px;"><i class="fa fa-times" title="Eliminar Título del Watchlist"></i></a>
+                                </div>
+                                <div id="container_@watchlist.Portfolio_Id@symbol.Symbol_ID" class="container" style="border:solid 1px #E4E4E4;margin-top:40px;margin-bottom:20px;border-radius:5px;">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a href="@Url.Action("SymbolDashboard", "Dashboard", new { username = System.Web.HttpContext.Current.User.Identity.Name, symbol_id = symbol.Symbol_ID, portfolio_id = watchlist.Portfolio_Id })" class="symbol_id_container portfolio-symbol-title" portfolioid="@watchlist.Portfolio_Id" symbolid="@symbol.Symbol_ID" id="@watchlist.Portfolio@symbol.Symbol_ID">@symbol.Symbol_Name</a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 portfolio-symbol-name">
+                                                @symbol.Symbol_Company_Name
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 portfolio-symbol-field-title">
+                                                Precio
+                                            </div>
+                                            <div class="col-md-9 portfolio-symbol-field-main-value black">
+                                                @symbol.Intradiary_Info.LastTradePrice
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 portfolio-symbol-field-title">
+                                                Variación
+                                            </div>                                            
+                                            <div class="col-md-9 portfolio-symbol-field-main-value @variationColor">
+                                                <span class="glyphicon @variationIcon" aria-hidden="true"></span>@string.Format("{0:N2}", symbol.Intradiary_Info.Change) (@string.Format("{0:N2}", symbol.Intradiary_Info.ChangePercent)%)
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 portfolio-symbol-field-title">
+                                                <div style="width:100%;float:left;">Apertura</div>
+                                                <div class="portfolio-symbol-field-value black" style="width:100%;float:left;">@symbol.Intradiary_Info.Opening</div>
+                                            </div>
+                                            <div class="col-md-5 portfolio-symbol-field-title">
+                                                <div style="width:100%;float:left;">Cierre Anterior</div>
+                                                <div class="portfolio-symbol-field-value black" style="width:100%;float:left;">@symbol.Intradiary_Info.PreviousClosing</div>
+                                            </div>
+                                        </div>                                        
+                                        <div class="row">
+                                            <div class="col-md-2 portfolio-symbol-field-title">
+                                                <div style="width:100%;float:left;">Mínimo</div>
+                                                <div class="portfolio-symbol-field-value black" style="width:100%;float:left;">@symbol.Intradiary_Info.Minimun</div>
+                                            </div>
+                                            <div class="col-md-2 portfolio-symbol-field-title">
+                                                <div style="width:100%;float:left;">Máximo</div>
+                                                <div class="portfolio-symbol-field-value black" style="width:100%;float:left;">@symbol.Intradiary_Info.Maximun</div>
+                                            </div>
+                                            <div class="col-md-2 portfolio-symbol-field-title">
+                                                <div style="width:100%;float:left;">Volumen</div>
+                                                <div class="portfolio-symbol-field-value black" style="width:100%;float:left;">@symbol.Intradiary_Info.Volume</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div style="margin-top:-18px;text-align:center">1Y</div>
+                                        <div class="chart_container" id="chart_@watchlist.Portfolio@symbol.Symbol_ID"></div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div style="margin-top:-18px;text-align:center">INTRADIARIO</div>
+                                        <div class="chart_container" id="chart_intradiary_@watchlist.Portfolio@symbol.Symbol_ID"></div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    //REPORTS - TABS CONTENT
+                    foreach (var reportType in Model.dashboard_content.Reports.Keys)
+                    {
+                        <div class="tab-pane fade" id="@reportType.Replace(' ', '_')">
+                            @{
+                                var reports = Model.dashboard_content.Reports[reportType];
+                                reports.Reverse();
+                                foreach (var report in reports)
+                                {
+                                    <div class="container">
+                                        <div class="col-md-12" style="border:solid 1px #E4E4E4;margin-top:20px;margin-bottom:20px;border-radius:5px;">
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <h4 style="color:#008a69">
+                                                        <i>@report.title</i>
+                                                    </h4>
+                                                </div>
+                                                <div class="col-md-3 text-center">
+                                                    <h6>
+                                                        <a href="@report.url" target="_blank" style="color:#ffffff;padding:10px;background-color:#008a69;border-radius:2px;" title="Open Report">VER INFORME</a>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 portfolio-symbol-name">
+                                                    @report.description
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popover-add-head" class="hide">
+    Agregar Watchlist
+</div>
+<div id="popover-add-content" class="hide">
+    @Html.Partial("~/Views/Dashboard/Partial/DashboardAddPortfolio.cshtml", new ctaWEB.Models.DashhboardAddPortfolioModel() { username = System.Web.HttpContext.Current.User.Identity.Name })
+</div>
+
+<div id="popover-delete-head" class="hide">
+    Eliminar Watchlist
+</div>
+<div id="popover-delete-content" class="hide">
+    @Html.Partial("~/Views/Dashboard/Partial/DashboardDeletePortfolio.cshtml", Model)
+</div>
+
+<!-- Action Report Modal PopUp for FREE user-->
+<div class="modal fade" id="reportErrorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:none;">
+    <div class="modal-dialog" role="document" style="width:362px">
+        <div class="modal-content">
+            <form class="form-signin wow fadeInUp">
+                <h2 class="form-signin-heading" style="background:#F6F6F6;color:#000000;">Prueba Finalizada</h2>
+                <div class="login-wrap" style="padding-bottom:0px;padding-top:10px">
+                    <p style="color:#1C1C1C;">
+                        Para seguir utilizando nuestros servicios, accedé a <a href="@Url.Action("Rates","Home")"><strong>Suscripciones</strong></a> y eligí tu plan
+                    </p>
+                    <div style="text-align:center;">
+                        <button id="close_report_error_modal" class="btn btn-lg btn-login" style="width:138px;background:#CCCCCC;" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

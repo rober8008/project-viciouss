@@ -1,0 +1,191 @@
+﻿@model ctaWEB.Models.DashboardModel
+<head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    @Scripts.Render("~/bundles/viciouss-watchlist-utils")    
+</head>
+
+<ul class="dashboard-actions-panel list-unstyled">
+    <li><a href="#" role="button" data-toggle="popover-delete" data-placement="left" style="z-index:1;position:relative"><i class="fa fa-times" title="Eliminar Wathlist del Dashboard"></i></a></li>    
+</ul>
+
+<div id="popover-add-head" class="hide">
+    Agregar Watchlist
+</div>
+<div id="popover-add-content" class="hide">
+    @Html.Partial("~/Views/Dashboard/Partial/DashboardAddPortfolio.cshtml", new ctaWEB.Models.DashhboardAddPortfolioModel() { username = System.Web.HttpContext.Current.User.Identity.Name })
+</div>
+
+<div id="popover-delete-head" class="hide">
+    Eliminar Watchlist
+</div>
+<div id="popover-delete-content" class="hide">
+    @Html.Partial("~/Views/Dashboard/Partial/DashboardDeletePortfolio.cshtml", Model)
+</div>
+
+<div class="col-md-12">
+    <!-- Nav tabs -->
+    <ul id="filters" class="nav nav-tabs" role="tablist" style="margin-bottom:5px;">
+        @{
+            int count = 0;
+            string active = "";
+            string first_portfolio_id = "";
+            foreach (var portfolio in Model.dashboard_content.Dashboard.DashboardItems)
+            {
+                active = "";
+                if ((Model.dashboard_content.Dashboard.ActivePortfolio_Id == 0 && count == 0) || (Model.dashboard_content.Dashboard.ActivePortfolio_Id == portfolio.Portfolio_Id))
+                {
+                    active = "active";
+                    first_portfolio_id = portfolio.Portfolio_Id.ToString();
+                }
+                <li role="presentation" class="@active">
+                    <a href="#@portfolio.Portfolio_Id" aria-controls="home" role="tab" data-toggle="tab" class="tab-portfolio-selector @active">@portfolio.Portfolio</a>
+                </li>
+                count++;
+            }            
+        }
+        <li><a href="#" role="button" data-toggle="popover-add" data-placement="right" style="z-index:1;position:relative"><i class="fa fa-plus" title="Agregar Wathlist al Dashboard"></i></a></li>
+    </ul>
+
+    <!-- Tabs Data -->
+    <div class="tab-content">
+        @{
+            count = 0;
+            active = "";
+            foreach (var portfolio in Model.dashboard_content.Dashboard.DashboardItems)
+            {
+                active = "";
+                if ((Model.dashboard_content.Dashboard.ActivePortfolio_Id == 0 && count == 0) || (Model.dashboard_content.Dashboard.ActivePortfolio_Id == portfolio.Portfolio_Id))
+                {
+                    active = "in active";
+                }
+                <div role="tabpanel" class="tab-pane fade @active" id="@portfolio.Portfolio_Id">
+                    <div class="col-md-12 text-center">                        
+                        @foreach (var symbol in portfolio.Symbols)
+                        {
+                            <span role="presentation">
+                                <a href="#" class="scrollTo" scrollto="@portfolio.Portfolio_Id@symbol.Symbol_ID">@symbol.Symbol_Name</a> |
+                            </span>
+                        }  
+                        <span>
+                            <a id="popoverOpener_@portfolio.Portfolio_Id" data-toggle="popover-add-symbol-@portfolio.Portfolio_Id" data-placement="right" class="popover-add-symbol-opener" style="cursor:pointer;"><i class="fa fa-plus" title="Agregar Título al Wathlist"></i></a>
+                        </span>
+                        <div id="popover-add-symbol-@portfolio.Portfolio_Id-head" class="hide">
+                            Agregar Título
+                        </div>
+                        <div id="popover-add-symbol-@portfolio.Portfolio_Id-content" class="hide">
+                            @Html.Partial("~/Views/Dashboard/Partial/DashboardPortfolioAddSymbol.cshtml", new ctaWEB.Models.PortfolioAddSymbolModel() { Portfolio_Id = portfolio.Portfolio_Id, Username = System.Web.HttpContext.Current.User.Identity.Name })
+                        </div>
+                    </div>                    
+                    
+                    @foreach (var symbol in portfolio.Symbols)
+                    {
+                        if (symbol.Intradiary_Info.ChangePercent == -100)
+                        {
+                            symbol.Intradiary_Info.ChangePercent = 0;
+                            symbol.Intradiary_Info.Change = 0;
+                        }
+
+                        string variationColor = (symbol.Intradiary_Info.ChangePercent > 0) ? "green" : ((symbol.Intradiary_Info.ChangePercent < 0) ? "red" : "blue");
+                        string variationIcon = (symbol.Intradiary_Info.ChangePercent > 0) ? "glyphicon-hand-up" : ((symbol.Intradiary_Info.ChangePercent < 0) ? "glyphicon-hand-down" : "glyphicon-minus");
+                        <div id="delete_symbol" style="float:right;">
+                            <a href="@Url.Action("PortfolioDeleteSymbol", "Dashboard", new { symbol_id = symbol.Symbol_ID, portfolio_id = portfolio.Portfolio_Id, username = System.Web.HttpContext.Current.User.Identity.Name })" style="padding-left:12px;"><i class="fa fa-times" title="Eliminar Título del Watchlist"></i></a>
+                        </div>
+                        <div id="container_@portfolio.Portfolio_Id@symbol.Symbol_ID" class="container" style="border:solid 1px #E4E4E4;margin-top:40px;margin-bottom:20px;border-radius:5px;">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="@Url.Action("SymbolDashboard", "Dashboard", new { username = System.Web.HttpContext.Current.User.Identity.Name, symbol_id = symbol.Symbol_ID, portfolio_id = portfolio.Portfolio_Id })" class="symbol_id_container portfolio-symbol-title" portfolioid="@portfolio.Portfolio_Id" symbolid="@symbol.Symbol_ID" id="@portfolio.Portfolio@symbol.Symbol_ID">@symbol.Symbol_Name</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 portfolio-symbol-name">
+                                        @symbol.Symbol_Company_Name
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 portfolio-symbol-field-title">
+                                        Precio
+                                    </div>
+                                    <div class="col-md-3 col-md-offset-1 portfolio-symbol-field-title">
+                                        Variación
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 portfolio-symbol-field-main-value black">
+                                        @symbol.Intradiary_Info.LastTradePrice
+                                    </div>
+                                    <div class="col-md-4 col-md-offset-1 portfolio-symbol-field-main-value @variationColor">
+                                        <span class="glyphicon @variationIcon" aria-hidden="true"></span>&nbsp;@string.Format("{0:N2}",symbol.Intradiary_Info.Change)&nbsp;(&nbsp;@string.Format("{0:N2}",symbol.Intradiary_Info.ChangePercent)%&nbsp;)
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 portfolio-symbol-field-title">
+                                        Cierre Anterior
+                                    </div>
+                                    <div class="col-md-3 col-md-offset-1 portfolio-symbol-field-value black">
+                                        @symbol.Intradiary_Info.PreviousClosing
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 portfolio-symbol-field-title">
+                                        Apertura
+                                    </div>
+                                    <div class="col-md-3 col-md-offset-1 portfolio-symbol-field-value black">
+                                        @symbol.Intradiary_Info.Opening
+                                    </div>
+                                </div>                                
+                                <div class="row">                                   
+                                    <div class="col-md-2 portfolio-symbol-field-title">
+                                        <div style="width:100%;float:left;">Mínimo</div>
+                                        <div class="portfolio-symbol-field-value black" style="width:100%;float:left;">@symbol.Intradiary_Info.Minimun</div>                                        
+                                    </div>
+                                    <div class="col-md-2 portfolio-symbol-field-title">
+                                        <div style="width:100%;float:left;">Máximo</div>
+                                        <div class="portfolio-symbol-field-value black" style="width:100%;float:left;">@symbol.Intradiary_Info.Maximun</div>                                        
+                                    </div>
+                                    <div class="col-md-2 portfolio-symbol-field-title">
+                                        <div style="width:100%;float:left;">Volumen</div>
+                                        <div class="portfolio-symbol-field-value black" style="width:100%;float:left;">@symbol.Intradiary_Info.Volume</div>                                        
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="col-md-3" style="height:200px;">
+                                <div style="margin-top:-20px;text-align:center">1Y</div>
+                                <div class="chart_container" id="chart_@portfolio.Portfolio@symbol.Symbol_ID"></div>
+                            </div>
+                            <div class="col-md-3" style="height:200px;">
+                                <div style="margin-top:-20px;text-align:center">INTRADIARIO</div>
+                                <div class="chart_container" id="chart_intradiary_@portfolio.Portfolio@symbol.Symbol_ID"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                    count++;
+            }
+        }
+    </div>
+</div>
+
+@Html.Partial("~/Views/Shared/Partial/LogginModal.cshtml")
+
+@if (!String.IsNullOrEmpty(ViewBag.ActionValidationError))
+{
+    <!-- Action Error Modal -->
+    <div class="modal fade in" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:block;">
+        <div class="modal-dialog" role="document" style="width:362px">
+            <div class="modal-content">
+                <form class="form-signin wow fadeInUp">
+                    <h2 class="form-signin-heading">Límite Superado</h2>
+                    <div class="login-wrap" style="padding-bottom:0px;padding-top:10px">
+                        <p style="color:rgb(20, 112, 99)">
+                            @ViewBag.ActionValidationError <a href="@Url.Action("Rates","Home")"><strong>Suscripciones</strong></a>
+                        </p>
+                        <div style="text-align:center;">
+                            <button id="close_error_modal" class="btn btn-lg btn-login" style="width:138px;background:#CCCCCC;" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}

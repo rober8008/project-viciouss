@@ -1,0 +1,12 @@
+﻿@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+}
+
+@*at loading bring all the options with no clasifications*@
+
+<div class="container">
+    <h2 style="color:#008a69">Opciones</h2>
+    @Html.Partial("~/Views/Quotes/Partial/OptionsWidget.cshtml", new ctaWEB.Models.QuotesSharesModel(3, null)) 
+</div> 
+
+

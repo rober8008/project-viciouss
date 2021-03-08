@@ -1,0 +1,93 @@
+﻿@model ctaWEB.Models.HeaderModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    @@media (max-width: 900px) {
+        #dropdown {
+            display: none;
+        }
+
+        #dropdown-menu-mobile {
+            visibility: visible;
+        }
+    }
+</style>
+
+
+<div class="navbar-default navbar-static-top container">
+    <div class="navbar-header">
+        <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+            <img src="../../Images/logo/black_word.png" style="height:43px;width:248px;" />
+        </a>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav" style="text-transform:uppercase">
+            <li>
+                <a href="@Url.Action("About","WhoWeAre")">Acerca</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","Home")#vcssServices">Servicios</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Informes","Home")">Informes</a>
+            </li>
+            <li>
+                <a href="http://viciouss.com/news/">Noticias</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","Quotes")">Cotizaciones</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Rates","Home")">Suscripciones</a>
+            </li>
+            @*<li>
+                <a href="@Url.Action("Contact","Home")">Contacto</a>
+            </li>*@
+            @if (Model.CurrentUserIsLoged)
+            {
+                <li class="dropdown">
+                    <a class="btn dropdown-toggle btn-header" data-close-others="false" data-delay="0" data-hover="dropdown" data-toggle="dropdown" href="">
+                        @System.Web.HttpContext.Current.User.Identity.Name <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="@Url.Action("Index","Dashboard")">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Logout","User")">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li class="dropdown">
+                    <a class="btn dropdown-toggle btn-header" href="@Url.Action("Register", "User")">Registrarse</a>
+                    @*<a class="btn dropdown-toggle btn-header" data-toggle="modal" data-target="#registerModal">Registrarse</a>*@
+                </li>
+                <li class="dropdown">
+                    <a class="btn dropdown-toggle btn-header" href="@Url.Action("Login", "User")">Login</a>
+                    @*<a class="btn dropdown-toggle btn-header" href="#" role="button" data-toggle="modal" data-target="#logginModal">Login</a>*@
+                </li>
+            }
+        </ul>
+    </div>        
+</div>
+
+@if (!Model.CurrentUserIsLoged)
+{
+    @*@Html.Partial("~/Views/Shared/Partial/LogginModal.cshtml")
+    @Html.Partial("~/Views/Shared/Partial/RegisterModal.cshtml", new ctaWEB.Models.RegisterModel())*@
+    @Html.Partial("~/Views/Shared/Partial/ForgotPasswordModal.cshtml")
+}
+
+
+

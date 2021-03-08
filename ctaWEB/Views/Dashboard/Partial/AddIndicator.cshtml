@@ -1,0 +1,68 @@
+﻿@model ctaWEB.Models.AddIndicatorModel
+
+<div class="col-md-offset-10 col-md-1" style="padding-left:10px;">
+    <a href="#" id="closeX1" onclick="javascript: $('#add_indicator_form').hide(); $('#closeX1').hide();" style="display:none;"><span class="glyphicon glyphicon-remove-circle"></span></a>
+</div> 
+<div id="add_indicator_form" style="display:none; border: 1px solid #cccccc; padding: 10px; border-radius: 5px;">         
+    @using (Ajax.BeginForm("AddIndicator", "Dashboard", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "OnSuccessAddIndicator(data, status, xhr)" }))
+    {
+        @Html.HiddenFor(m => m.username)
+        @Html.HiddenFor(m => m.id_indicator, new { id = "indicator_id" })
+        @Html.HiddenFor(m => m.id_portfolio)
+        @Html.HiddenFor(m => m.id_symbol)  
+        
+        <h6>Parámetros</h6>
+        <div class="col-md-12" id="param1_container">
+            <div class="input-group" style="width:160px;margin-bottom:20px;">
+                @Html.LabelFor(m => m.param1, new { id = "param1_label", @class = "input-group-addon" })
+                @Html.TextBoxFor(m => m.param1, new { @class = "form-control" })
+                <br />
+                @Html.ValidationMessageFor(m => m.param1)
+            </div>
+        </div>
+        <div class="col-md-12" id="param2_container">
+            <div class="input-group" style="width:160px;margin-bottom:20px;">
+                @Html.LabelFor(m => m.param2, new { id = "param2_label", @class = "input-group-addon" })
+                @Html.TextBoxFor(m => m.param2, new { @class = "form-control" })
+                <br />
+                @Html.ValidationMessageFor(m => m.param2)
+            </div>
+        </div>
+        <div class="col-md-12" id="param3_container">
+            <div class="input-group" style="width:160px;">
+                @Html.LabelFor(m => m.param3, new { id = "param3_label", @class = "input-group-addon" })
+                @Html.TextBoxFor(m => m.param3, new { @class = "form-control" })
+                <br />
+                @Html.ValidationMessageFor(m => m.param3)
+            </div>
+        </div>        
+        <h6>Diseño</h6>
+        <div class="col-md-12" id="color1_container">
+            <div id="cp1" class="input-group" style="width:160px;border-left-width:1px;border-left-style:solid;border-left-color:#cccccc;">
+                @Html.TextBoxFor(m => m.color1, new { id = "indicator_color1", @class = "form-control", style = "cursor:not-allowed;background-color:#eee;display:none;" })
+                <span id="indicator_color1_picker" class="input-group-addon" style="cursor:pointer;"><i></i></span>
+            </div>
+            <br />
+            @Html.ValidationMessageFor(m => m.color1)
+        </div>
+        <div class="col-md-12" id="color2_container">
+            <div id="cp2" class="input-group" style="width:160px;border-left-width:1px;border-left-style:solid;border-left-color:#cccccc;">
+                @Html.TextBoxFor(m => m.color2, new { id = "indicator_color2", @class = "form-control", style = "cursor:not-allowed;background-color:#eee;display:none;" })
+                <span id="indicator_color2_picker" class="input-group-addon" style="cursor:pointer;"><i></i></span>
+            </div>
+            <br />
+            @Html.ValidationMessageFor(m => m.color2)
+        </div>
+        <div class="col-md-12" id="color3_container">
+            <div id="cp3" class="input-group" style="width:160px;border-left-width:1px;border-left-style:solid;border-left-color:#cccccc;">
+                @Html.TextBoxFor(m => m.color3, new { id = "indicator_color3", @class = "form-control", style = "cursor:not-allowed;background-color:#eee;display:none;" })
+                <span id="indicator_color3_picker" class="input-group-addon" style="cursor:pointer;"><i></i></span>
+            </div>
+            <br />
+            @Html.ValidationMessageFor(m => m.color3)
+        </div>        
+        <div class="col-md-12" style="margin-top:5px;">
+            <button type="submit" class="btn btn-xs" style="background-color:#147063;color:white;"> <i class="glyphicon glyphicon-send"></i> Enviar</button>            
+        </div>
+    }
+</div>

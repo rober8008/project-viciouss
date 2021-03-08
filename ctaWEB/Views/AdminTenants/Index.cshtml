@@ -1,0 +1,209 @@
+﻿@model IEnumerable<ctaCOMMON.AdminModel.TenantModel>
+@Html.AntiForgeryToken()
+
+@{
+    ViewBag.Title = "Tenants Admin";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script type="text/javascript">    
+    var viewModel = {        
+        tenantCollection: ko.observableArray(),        
+        tenantTypeCollection: ko.observableArray(),
+        tenantActiveFilter: ko.observable(),
+        tenantTypeFilter: ko.observable(),
+        filterTenants: function (filter) {
+            self.tenantActiveFilter(filter.tenantActiveFilterValue);
+            self.tenantTypeFilter(filter.tenantTypeFilterValue);
+        },
+        getTenantTypeName: function (typeId) {
+            var res = ko.utils.arrayFirst(viewModel.tenantTypeCollection(), function (item) {
+                return item.Id() === typeId;
+            });
+            return (res) ? res.name() : '';
+        },
+    };
+
+    $(document).ready(function () {
+        $.get("/AdminTenants/GetTenantsType", function (data) {
+            $(data).each(function (index, element) {
+                var mappedItem =
+                    {
+                        Id: ko.observable(element.Id),
+                        name: ko.observable(element.name)
+                    };
+                viewModel.tenantTypeCollection.push(mappedItem);
+            });
+        });
+
+        $.ajax({
+            type: "GET",
+            url: "/AdminTenants/GetTenants",
+        }).done(function (data) {            
+            $(data).each(function (index, element) {
+                var mappedItem =
+                    {
+                        Id: ko.observable(element.Id),
+                        email: ko.observable(element.email),
+                        username: ko.observable(element.username),
+                        type: ko.observable(element.type),
+                        //typename: ko.observable(element.typename),
+                        typeExpiration: ko.observable(ToJavaScriptDate(element.typeExpiration).toLocaleDateString()),
+                        activationId: ko.observable(element.activationId),
+                        Mode: ko.observable("display")
+                    };
+                viewModel.tenantCollection.push(mappedItem);
+            });
+
+            viewModel.tenantTypeFilter(false);
+            viewModel.tenantActiveFilter(false);
+            viewModel.tenantFileteredCollection = ko.computed(function () {
+                return ko.utils.arrayFilter(viewModel.tenantCollection(), function (tenant) {
+                    return (
+                        !viewModel.tenantTypeFilter() || viewModel.tenantTypeFilter() == tenant.type()) &&
+                        (!viewModel.tenantActiveFilter() || (viewModel.tenantActiveFilter() == 'validated' && !tenant.activationId()) || (viewModel.tenantActiveFilter() == 'registered' && tenant.activationId())
+                        );
+                });
+            });  
+
+            ko.applyBindings(viewModel);
+        }).error(function (ex) {
+            alert("Error getting Tenants");
+        });        
+    });    
+
+    $(document).on("click", ".kout-edit", null, function (ev) {
+        var current = ko.dataFor(this);
+        current.Mode("edit");
+    });
+
+    $(document).on("click", ".kout-update", null, function (ev) {
+        var current = ko.dataFor(this);
+        saveData(current);
+        current.Mode("display");
+    });
+
+    $(document).on("click", ".kout-cancel", null, function (ev) {
+        var current = ko.dataFor(this);
+        current.Mode("display");
+    });
+
+    function saveData(currentData) {
+        var postUrl = "/AdminTenants/Edit";  
+
+        var submitData = {
+            Id: currentData.Id(),
+            email: currentData.email(),
+            username: currentData.username(),
+            type: currentData.type(),
+            //typename: currentData.typename(),
+            typeExpiration: currentData.typeExpiration(),
+            activationId: currentData.activationId(),
+            __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val()
+        };
+       
+        $.ajax({
+            type: "POST",
+            contentType: "application/x-www-form-urlencoded",
+            url: postUrl,
+            data: submitData
+        }).done(function (id) {
+            
+        }).error(function (ex) {
+            alert("ERROR Saving");
+        })
+    }
+
+    function ToJavaScriptDate(value) {
+        var pattern = /Date\(([^)]+)\)/;
+        var results = pattern.exec(value);
+        var dt = new Date(parseFloat(results[1]));
+        return dt;//(dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+    }
+
+</script>
+
+<div class="panel-default">
+    <div class="panel-heading">Tenant Filters</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="panel-default">
+                    <div class="panel-heading">Type</div>
+                    <div class="panel-body">
+                        <div class="btn-group" role="group" data-bind="foreach: tenantTypeCollection">
+                            <button type="button" class="btn btn-default" data-bind="text: name, click: function() { viewModel.tenantTypeFilter(Id()); }"></button>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="panel-default">
+                    <div class="panel-heading">Status</div>
+                    <div class="panel-body">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default" data-bind="click: function() { viewModel.tenantActiveFilter('registered')}">Registered</button>
+                            <button type="button" class="btn btn-default" data-bind="click: function() { viewModel.tenantActiveFilter('validated')}">Validated</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1"><button type="button" class="btn btn-default" data-bind="click: function() { viewModel.tenantActiveFilter(false); viewModel.tenantTypeFilter(false);}">Clear Filters</button></div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            id
+        </th>
+        <th>
+            email
+        </th>
+        <th>
+            username
+        </th>        
+        <th>
+            typename
+        </th>
+        <th>
+            typeExpiration
+        </th>
+        <th>
+            activationId
+        </th>
+        <th></th>
+    </tr>
+    <tbody data-bind="foreach: tenantFileteredCollection">
+        <tr data-bind="template: { name: Mode, data: $data }"></tr>        
+    </tbody>
+</table>
+
+<script type="text/html" id="display">
+    <td data-bind="text: Id"></td>
+    <td data-bind="text: email"></td>
+    <td data-bind="text: username"></td>    
+    <td data-bind="text: viewModel.getTenantTypeName(type())"></td>
+    <td data-bind="text: typeExpiration"></td>
+    <td data-bind="text: activationId"></td>
+    <td>
+        <button class="btn btn-success kout-edit">Edit</button>        
+    </td>
+</script>
+
+<script type="text/html" id="edit">
+    <td data-bind="text: Id"></td>
+    <td><input type="text" data-bind="value: email" /></td>
+    <td data-bind="text: username"></td>        
+    <td><select data-bind="options: viewModel.tenantTypeCollection,
+                           optionsText: 'name',
+                           optionsValue: 'Id',
+                           value: type"></select></td>
+    <td><input type="text" data-bind="value: typeExpiration" /></td>
+    <td><input type="text" data-bind="value: activationId" /></td>
+    <td>
+        <button class="btn btn-success kout-update">Update</button>
+        <button class="btn btn-danger kout-cancel">Cancel</button>
+    </td>
+</script>

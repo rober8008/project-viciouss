@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<!-- Modal -->
+<div class="modal fade" id="notAuthorizedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document" style="width:362px">
+        <div class="modal-content">
+            <form class="form-signin wow fadeInUp">
+                <h2 class="form-signin-heading">REGISTRESE EN VICIOUSS</h2>
+                <div class="login-wrap" style="padding-bottom:0px;padding-top:10px">
+                    <p style="color:rgb(20, 112, 99)">
+                        Para utilizar nuestras herramientas debe encontrarse registrado y acceder a la sección <a href="@Url.Action("Index","Dashboard")"><strong>Watchlists</strong></a>.
+                    </p>
+                    <div style="display:inline-block" id="spin">
+                        <button class="btn btn-lg btn-login" data-toggle="modal" data-dismiss="modal" data-target="#registerModal" style="width:139px;margin-right:10px">Registro</button>
+                        <button class="btn btn-lg btn-login" style="width:138px;background:#CCCCCC;" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

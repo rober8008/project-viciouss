@@ -1,0 +1,200 @@
+﻿@model ctaWEB.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* PAGE HEADER *@
+<div class="row text-center" style="background-color:#008a69;
+                                    color:#ffffff;
+                                    font-size:2.0em;
+                                    padding-top: 10px;
+                                    padding-bottom: 10px;
+                                    font-weight:bold;
+                                    margin: 0px;">
+    Tu Usuario
+</div>
+
+@* MAIN SECTION *@
+<div style="background: url(../../Images/Login/bkgimg_Login.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            height:auto;
+            padding-bottom: 50px;">
+    <div class="row" style="margin-right:0px;">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="row">
+                <div class="col-lg-offset-7 col-lg-4 text-center wow fadeInDown" style="padding:5px;">
+                    <form id="page_loggin_form" class="form-signin wow fadeInUp" action="@Url.Action("DoLogin", "User")" method="post">
+                        <div class="login-wrap">
+                            <div class="form-group">
+                                <p style="font-weight:bold;
+                                          text-align:left;
+                                          color:#1c1c1c;">
+                                    <span style="letter-spacing:8px;text-transform:uppercase;">Log In</span> <span style="vertical-align:super;">________________</span>
+                                </p>
+                                <h3 class="text-left" style="color:#008a69;
+                                                             font-weight:bold;
+                                                             margin-top:0px;
+                                                             font-size:1.85em;">
+                                    Bienvenido a tu Cuenta
+                                </h3>
+                            </div>
+                            <div class="form-group" id="login_username_group">
+                                <input type="text" class="form-control contact-us-form-control" placeholder="@ctaWEB.App_GlobalResources.Modals.User_Name" id="username" name="username">
+                            </div>
+                            <div class="form-group" id="login_password_group">
+                                <input type="password" class="form-control contact-us-form-control" placeholder="@ctaWEB.App_GlobalResources.Modals.Password" id="password" name="password">
+                            </div>
+
+                            <div class="g-recaptcha" data-sitekey="6LeWK3EUAAAAAJULEl1ZNyKEHLiJG1_HTsjWu6vn" style="transform:scale(0.95);-webkit-transform:scale(0.95);transform-origin:0 0;-webkit-transform-origin:0 0"></div>
+                            <span id="pagevalCaptLoginFormModal" class="text-danger"></span>
+                            <div id="error_group_form_login_modal" class="help-block alert alert-danger" style="display: none;"></div>
+
+                            <div style="width:100%;" id="spin">
+                                <button data-loading-text="Iniciando..." type="submit" id="page_submit_loggin" class="btn" style="width:100%;
+                                                                                                                                  border:2px solid #008a69;
+                                                                                                                                  color:#008a69;
+                                                                                                                                  text-transform:uppercase;
+                                                                                                                                  background-color:white;
+                                                                                                                                  font-weight:bold;">
+                                    Iniciar
+                                </button>
+                            </div>
+
+                            <label class="checkbox">
+                                @*<input type="checkbox" value="remember-me"> @ctaWEB.App_GlobalResources.Modals.Remember_Me*@
+                                <span class="pull-right">
+                                    <a data-toggle="modal" data-dismiss="modal" data-target="#forgotPasswordModal"> @ctaWEB.App_GlobalResources.Modals.Forgot_Password</a>
+                                </span>
+                            </label>
+
+                            <div class="registration pull-right" style="margin-bottom:10px;">
+                                No estás registrado?
+                                <a style="cursor:pointer;text-decoration:underline;" href="@Url.Action("Register","User")">
+                                    Registrate Ahora
+                                </a>
+                            </div>
+                            <br />
+
+                            <!-- social buttons -->
+                            <div class="box">
+                                <div class="box-body">
+                                    <a onclick="return ingresar();" class="btn btn-block btn-social btn-facebook" style="color:white">
+                                        <i class="fa fa-facebook"></i> @ctaWEB.App_GlobalResources.Modals.SignIn_Facebook
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-offset-7 col-lg-4 wow fadeInUp" style="padding:5px;">
+                    <form class="form-signin wow fadeInUp">
+                        <div class="login-wrap">
+                            <div class="form-group">
+                                <h3 class="text-left" style="color:#008a69;
+                                                             font-weight:bold;
+                                                             margin-top:0px;
+                                                             font-size:1.75em;">
+                                    Con tu suscripción accedes a:
+                                </h3>                                
+                                <p style="text-align:left;"><span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:0.4em;vertical-align:super;"></span> Herramientas de Análisis Técnico</p>
+                                <p style="text-align:left;"><span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:0.4em;vertical-align:super;"></span> Reportes e Informes</p>
+                                <p style="text-align:left;"><span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:0.4em;vertical-align:super;"></span> Watchlist de Activos</p>
+                                <p style="text-align:left;"><span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:0.4em;vertical-align:super;"></span> Informes de Estrategias</p>
+                                <p style="text-align:left;"><span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:0.4em;vertical-align:super;"></span> Alertas y pre-mkt diario en tu celular</p>
+                                <p style="text-align:left;"><span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:0.4em;vertical-align:super;"></span> Newsletter semanal</p>
+                            </div>
+                        </div>
+                    </form>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("~/Views/Shared/Partial/ForgotPasswordModal.cshtml")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#logginModal').on('shown.bs.modal', function () {
+            $('#username').focus()
+        });
+
+        $('#logginModal').on('hidden.bs.modal', function () {  //cleaning the modal on close
+            $('#login_username_group').removeClass('has-error'); // remove the error class
+            $('#login_password_group').removeClass('has-error');
+            $('#login_error_group').removeClass('has-error');
+            $('.help-block').remove(); // remove the error text
+            $('#username').val('');
+            $('#password').val('');
+        });
+    });
+
+    $('#page_loggin_form').submit(function (event) {
+        if ($("#page_loggin_form .g-recaptcha-response").val() === null || $("#page_loggin_form .g-recaptcha-response").val() === "") {
+            $("#pagevalCaptLoginFormModal").html("Debes chequear casilla de verificación");
+            return false;
+        }
+        $("#pagevalCaptLoginFormModal").html('');
+        $('#error_group_form_login_modal').hide();
+    });
+
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '321816401537142', //id de app de prueba 322827904769325
+            xfbml: true,
+            version: 'v2.8'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function ingresar() {
+
+        FB.login(function (response) {
+            validarUsuario();
+        }, { scope: 'public_profile, email' });
+    }
+
+    function validarUsuario() {
+
+        FB.getLoginStatus(function (response) {
+
+            var target = document.getElementById('spin');
+            var spinner = new Spinner().spin(target);
+
+            if (response.status == 'connected') {
+                FB.api('/me?fields=email,first_name', function (response) {
+                    var formData = {
+                        'username': response.first_name + response.id.slice(-4),
+                        'email': response.email
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("DoFacebookLogin", "User")',
+                        data: formData,
+                        dataType: 'json',
+                        encode: true
+                    })
+                    .done(function (data) {
+                        window.location = data.url;
+                    });
+                });
+            } //sino se pudo conectar quito el spinner
+            else {
+                spinner.spin(false);
+            }
+        });
+    }
+
+</script>

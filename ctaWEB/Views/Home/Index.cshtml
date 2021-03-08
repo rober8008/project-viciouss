@@ -1,0 +1,344 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    @@media (max-width: 900px) {
+        .video-container {
+            display: none;
+        }
+
+        .da-slider {
+            height:220px;
+        }
+
+        .web-text {
+            display:none;
+        }
+
+        .responsive-text {
+            display:flex
+        }
+    }
+</style>
+
+@* SLIDER *@
+<div id="da-slider" class="da-slider">    
+    <div class="da-slide" style="background: url(../../Images/Home/Slider/bkgimg_Main-Slider-Image.jpg);
+                                 background-repeat: no-repeat;
+                                 background-size: 100% 100%;">
+        <div class="container">
+            <div class="col-md-12 web-text">
+                <h2  class="feature-head wow fadeInDown" style="color:#ffffff;
+                                                                font-size:2.3em;
+                                                                top:130px;
+                                                                text-transform:uppercase;
+                                                                z-index: 2;">
+                    <i>El poder de la <br/> información en tus manos</i>
+                </h2>                
+                <a href="@Url.Action("Register", "User")" class="btn btn-lg da-link" style="background-color:#ffcd48;
+                                                                                            font-size:1.25em;
+                                                                                            border-radius:9px;
+                                                                                            color:#000000;
+                                                                                            z-index: 2;
+                                                                                            width:auto;
+                                                                                            text-transform:uppercase;
+                                                                                            font-weight:bold;
+                                                                                            top:255px;">
+                    comenzá ahora gratis
+                </a>
+            </div>
+            <div class="col-md-12 responsive-text">
+                <h2 style="color: #ffffff;font-size: 1.5em;top: 41px;text-transform:uppercase;margin-left:-7%;z-index: 2;">
+                    <i>El poder de la información en tus manos</i>
+                </h2>               
+                <a href="@Url.Action("Register", "User")" class="btn btn-info btn-lg da-link" style="left:42%;
+                                                                                                     background-color:#ffcd48;
+                                                                                                     font-size:19px;
+                                                                                                     width:auto;
+                                                                                                     top:155px;
+                                                                                                     color:#000000;
+                                                                                                     border-radius:9px;
+                                                                                                     z-index: 2;">
+                    Comience Ahora
+                </a>
+            </div>
+        </div>
+    </div>    
+</div>
+
+@* QUOTES CAROUSEL *@
+@Html.Partial("~/Views/Home/Partial/QuotesCarousel.cshtml", new ctaWEB.Models.QuotesCarouselModel(1))
+
+@* ABOUT SECTION *@
+<div style="background-color:#ffffff;margin-top:50px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-3 feature-head" style="color:#333333;
+                                                              font-weight:bold;
+                                                              letter-spacing:8px;
+                                                              font-size:1.25em;">
+                        VICIOUSS
+                    </div>
+                    <div class="col-lg-9 feature-head" style="color:#333333;
+                                                              font-weight:bold;
+                                                              line-height:10px;">
+                        __________________________________
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7 feature-head wow fadeInDown" style="font-weight:bold;
+                                                                             color:#008a69;
+                                                                             font-size:1.75em;">
+                        Somos la plataforma de inversión financiera que necesitás para tus inversiones
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-10 feature-head wow fadeInDown" style="font-weight:400;
+                                                                              color:#333333;
+                                                                              font-size:1.5em;">
+                        Viciouss es el primer sitio argentino que brinda soporte integrado a los inversores a través de herramientas de análisis técnico, novedosos informes de mercado y de las principales empresas argentinas, informes de estrategías de inversión y reportes diarios de indicadores y ratios
+                    </div>
+                </div>
+                <div class="row">
+                    <a href="@Url.Action("Rates","Home")" class="btn btn-lg da-link" style="background-color:#ba2b2f;
+                                                                                            font-size:1.0em;
+                                                                                            border-radius:9px;
+                                                                                            color:#ffffff;
+                                                                                            width:auto;
+                                                                                            text-transform:uppercase;
+                                                                                            font-weight:bold;">
+                        ¡Suscribete Ahora!
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-offset-2 col-lg-4">
+                <img src="~/Images/Home/bkgimg_About-Us-Right-Image.jpg" style="display:flex;width:100%;" />
+            </div>
+        </div>
+        <div class="row" style="margin-top:20px;">
+            <div class="col-lg-offset-1 col-lg-2"><div style="border-bottom:1px solid #008a69;"><a href="@Url.Action("Index","WhoWeAre")" style="color:#008a69;">Acerca de Nosotros<span class="glyphicon glyphicon-arrow-right" style="float:right;" aria-hidden="true"></span></a></div></div>
+            <div class="col-lg-offset-2 col-lg-2"><div style="border-bottom:1px solid #008a69;"><a href="@Url.Action("Rates","Home")" style="color:#008a69;">Suscripciones<span class="glyphicon glyphicon-arrow-right" style="float:right;" aria-hidden="true"></span></a></div></div>
+            <div class="col-lg-offset-2 col-lg-2"><div style="border-bottom:1px solid #008a69;"><a href="@Url.Action("FAQs","WhoWeAre")" style="color:#008a69;">Preguntas Frequentes<span class="glyphicon glyphicon-arrow-right" style="float:right;" aria-hidden="true"></span></a></div></div>            
+        </div>
+    </div>
+</div>
+
+@* SERVICES *@
+<div id="vcssServices" style="margin-top:50px;">
+    <div class="row" style="margin: 0px;
+                            display:flex;">
+        <div class="col-lg-3 text-center wow fadeInDown" style="padding-bottom: 50px;
+                                                                flex:1;
+                                                                background: url(../../Images/Home/bkgimg_Servicios-Herramientas.jpg);
+                                                                background-repeat: no-repeat;
+                                                                background-size: 100% 100%;">            
+                <img src="~/Images/Home/Herramientas-Icon.png" style="height:70px;
+                                                                      margin-top:20%;"/>
+                <h5 style="text-transform:uppercase;
+                           color:#ffffff;">
+                    Herramientas
+                </h5>
+                <div class="col-lg-offset-3 col-lg-6  text-center" style="color:#ffffff;
+                                                                          margin-top:15%;">
+                    Construí tus propios Watchlist y realizá análisis técnico de tus activos favoritos, desde cualquier dispositivo
+                </div>
+                <div class="col-lg-offset-3 col-lg-6  text-center" style="color:#ffffff;
+                                                                          margin-top:10%;">                    
+                    <a href="@Url.Action("TradingAndMarketTools","WhoWeAre")" style="color:#ffffff;
+                                       text-transform:uppercase;
+                                       border-bottom: 1px solid #ffffff;">
+                        Ver Más
+                    </a>                    
+                </div>            
+        </div>
+        <div class="col-lg-3 text-center wow fadeInUp" style="padding-bottom: 50px;flex:1;
+                                                              background: url(../../Images/Home/bkgimg_Servicios-Reportes-e-Informes.jpg);
+                                                              background-repeat: no-repeat;
+                                                              background-size: 100% 100%;">
+            <img src="~/Images/Home/Reportes-e-Informes-Icon.png" style="height:70px;
+                                                                         margin-top:20%;" />
+            <h5 style="text-transform:uppercase;
+                       color:#ffffff;">
+                Reportes e Informes
+            </h5>
+            <div class="col-lg-offset-3 col-lg-6  text-center" style="color:#ffffff;
+                                                                      margin-top:15%;">
+                Accedé a informes exclusivos de empresas, estrategias de inversión y reportes innovadores que solo nosotros te ofrecemos
+            </div>
+            <div class="col-lg-offset-3 col-lg-6  text-center" style="color:#ffffff;
+                                                                      margin-top:10%;">
+                <a href="@Url.Action("OurReportsAndAnalysis", "WhoWeAre")" style="color:#ffffff;
+                                                                                  text-transform:uppercase;
+                                                                                  border-bottom: 1px solid #ffffff;">
+                    Ver Más
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 text-center wow fadeInDown" style="padding-bottom: 50px;flex:1;
+                                                                background: url(../../Images/Home/bkgimg_Servicios-Alertas-y-Noticias-de-Mercado.jpg);
+                                                                background-repeat: no-repeat;
+                                                                background-size: 100% 100%;">
+            <img src="~/Images/Home/Alertas-y-Noticias-de-Mercado-Icon.png" style="height:70px;
+                                                                                   margin-top:20%;" />
+            <h5 style="text-transform:uppercase;
+                       color:#ffffff;">
+                Alertas y Noticias de Mercado
+            </h5>
+            <div class="col-lg-offset-3 col-lg-6  text-center" style="color:#ffffff;
+                                                                      margin-top:15%;">
+                Te acercamos información objetiva y valiosa para que tomes decisiones sobre tus inversiones
+            </div>
+            <div class="col-lg-offset-3 col-lg-6  text-center" style="color:#ffffff;
+                                                                      margin-top:10%;">
+                <a href="https://viciouss.com/news" style="color:#ffffff;
+                                                           text-transform:uppercase;
+                                                           border-bottom: 1px solid #ffffff;">
+                    Ver Más
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 text-center wow fadeInUp" style="padding-bottom: 50px;flex:1;
+                                                              background: url(../../Images/Home/bkgimg_Servicios-Cotizaciones.jpg);
+                                                              background-repeat: no-repeat;
+                                                              background-size: 100% 100%;">
+            <img src="~/Images/Home/Cotizaciones-Icons.png" style="height:70px;
+                                                                   margin-top:20%;" />
+            <h5 style="text-transform:uppercase;
+                       color:#ffffff;">
+                Cotizaciones
+            </h5>
+            <div class="col-lg-offset-3 col-lg-6  text-center" style="color:#ffffff;
+                                                                      margin-top:15%;">
+                Accedé a las cotizaciones de mercado de forma práctica y dinámica
+            </div>
+            <div class="col-lg-offset-3 col-lg-6  text-center" style="color:#ffffff;
+                                                                      margin-top:10%;">
+                <a href="@Url.Action("Index","Quotes")" style="color:#ffffff;
+                                                               text-transform:uppercase;
+                                                               border-bottom: 1px solid #ffffff;">
+                    Ver Más
+                </a>
+            </div>
+        </div>
+    </div>    
+</div>
+
+@* EXCLUSIVE CONTENT *@
+<div class="container">
+    <div class="row text-center wow fadeInUp" style="margin-top:40px;"> 
+        
+            <div style="background: url(../../Images/Home/bkgimg_News-Section-Home.jpg);
+                        background-repeat: no-repeat;
+                        background-size: 100% 100%;                                         
+                        height:400px;
+                        padding-left:0px;
+                        width:100%;">                    
+                <div style="height:75%;
+                            float:left;
+                            margin-left:90px;
+                            margin-top:95px;">
+                    <p style="font-weight:bold;
+                                text-align:left;
+                                color:#ffffff;
+                                margin-bottom:0px;">
+                        <span style="letter-spacing:8px;text-transform:uppercase;">CONTENIDO EXCLUSIVO</span> <span style="vertical-align:super;">________________</span>
+                    </p>
+                    <p style="color:#ffffff;
+                                font-size:1.75em;
+                                font-weight:bold;">
+                        Noticias & Novedades
+                    </p>
+                </div>
+                <div class="col-lg-12 text-right" style="width:25%;
+                                                         float:right;
+                                                         margin-top:320px;
+                                                         margin-right:60px;">
+                    <a href="https://viciouss.com/news" style="color:#ffffff;
+                                                               border-bottom: 1px solid #ffffff;">
+                        Ir a Sección Noticias &nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+@* DAILY REPORTS & INFORMS *@
+<div style="margin-top:50px;
+            background: url(../../Images/Home/bkgimg_Reportes-e-Informes.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            height:500px">    
+    <div class="col-lg-offset-7 col-lg-2 wow fadeInUp" style="background-color:#ffffff;
+                                                              padding-top:30px;
+                                                              padding-bottom:30px;">
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-10" style="color:#1e1e1e;
+                                                          font-size:1.5em;
+                                                          font-weight:bold;
+                                                          margin-bottom:15px;">
+                Reportes Diarios <br/> & Informes
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-10" style="color:#1e1e1e;
+                                                          font-size:1.25em;
+                                                          margin-bottom:15px;">
+                Descargá un ejemplo de nuestro reporte diario de indicadores técnicos
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-10 text-center">
+                <a href="https://gallery.mailchimp.com/3a1a1fa85dd8fa313f2fdc4b0/files/c9ee7f20-0d91-432d-a8a7-d190d39a4f08/Informe_de_Indicadores_Te_cnicos.pdf" 
+                   class="btn btn-lg da-link"  
+                   target="_blank" 
+                   style="background-color:#ba2b2f;
+                        font-size:1.0em;
+                        border-radius:9px;
+                        color:#ffffff;
+                        width:auto;
+                        text-transform:uppercase;
+                        font-weight:bold;
+                        width:100%;">
+                    Descargar Ahora
+                </a>
+            </div>
+        </div>
+        <div class="row" style="padding-top:45px;">
+            <div class="col-lg-offset-1 col-lg-10" style="color:#1e1e1e;
+                                                          font-size:1.5em;
+                                                          font-weight:bold;
+                                                          margin-bottom:15px;">
+                Suscripciones
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-10" style="color:#1e1e1e;
+                                                          font-size:1.25em;
+                                                          margin-bottom:15px;">
+                Recibe estrategias de inversión puntuales y reportes diarios de análisis técnico
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-10 text-center">
+                <a data-toggle="modal" href="@Url.Action("Rates","Home")" class="btn btn-lg da-link" style="background-color:#ba2b2f;
+                                                                                                            font-size:1.0em;
+                                                                                                            border-radius:9px;
+                                                                                                            color:#ffffff;
+                                                                                                            width:auto;
+                                                                                                            text-transform:uppercase;
+                                                                                                            font-weight:bold;
+                                                                                                            width:100%;">
+                    Ver Suscripciones
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* CONTACT US *@
+@Html.Partial("~/Views/Shared/Partial/ContactUs.cshtml")

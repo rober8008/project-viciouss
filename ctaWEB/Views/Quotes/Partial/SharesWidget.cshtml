@@ -1,0 +1,105 @@
+﻿@model ctaWEB.Models.QuotesSharesModel
+
+    <div class="col-md-12" style="z-index:0;position:relative">
+        <div class="col-md-12" id="spin2">
+            @using (Ajax.BeginForm("SharesSelector", "Quotes", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "quotes_boxes" }, new { style = "margin-top:27px;" }))
+            {
+                <fieldset style="border-bottom:1px solid #e5e5e5;">
+                    @{
+                List<SelectListItem> listItems = new List<SelectListItem>();
+                listItems.Add(new SelectListItem
+                  {
+                      Text = "MERVAL",
+                      Value = "1"
+                  });
+                listItems.Add(new SelectListItem
+                 {
+                     Text = "PANEL GENERAL",
+                     Value = "2",
+                 });
+                listItems.Add(new SelectListItem
+                 {
+                     Text = "MERVAL 25",
+                     Value = "3"
+                 });
+                listItems.Add(new SelectListItem
+                {
+                    Text = "MERVAL ARG",
+                    Value = "4"
+                });
+                listItems.Add(new SelectListItem
+                {
+                    Text = "ADRs",
+                    Value = "5"
+                });
+                listItems.Add(new SelectListItem
+                {
+                    Text = "CEDEARS",
+                    Value = "6"
+                });
+                    }
+                    @Html.DropDownListFor(m => m.MarketIndex_ID,
+                                        new SelectList(listItems, "Value", "Text"),
+                                       new { style = "height:26px;margin-bottom:10px;width:140px;" })
+
+                    <input id="submitBT" type="submit" value="Mostrar" />
+
+                </fieldset>
+            }
+        </div>
+
+        @foreach (var item in Model.GetQuotesValues)
+        {
+            string bckColor = (item.Variation == 1) ? "green" : ((item.Variation == -1) ? "red" : "blue");
+            string variationIcon = (item.Variation == 1) ? "glyphicon-hand-up" : ((item.Variation == -1) ? "glyphicon-hand-down" : "glyphicon-minus");
+
+            <div class="col-xs-12 col-sm-6 col-md-3" style="margin-top:5px;padding-right:0px;padding-left:5px">
+                <div class="thumbnail shares-@bckColor wow fadeInUp" data-wow-delay=".1s">
+                    <div class="caption">
+                        <div class="row">
+                            <div class="col-md-12" style="text-align:center;">
+                                <a href="@Url.Action("Quote", "Quotes", new { symbol_id = item.Symbol_ID })" class="symbol_id_container portfolio-symbol-title" style="color:white">@item.Symbol</a>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:11px;color:white">
+                            <div class="col-md-3 portfolio-symbol-field-main-value">
+                                @item.CurrentAskPrice
+                            </div>
+                            <div class="col-md-1 col-md-offset-1 portfolio-symbol-field-main-value">
+                                <span class="glyphicon @variationIcon" aria-hidden="true" style="float:left;"></span>&nbsp;@item.VariationValue&nbsp;(&nbsp;@string.Format("{0:N2}", item.PercentVariation)%&nbsp;)
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:5px;color:white">
+                            <div class="col-md-3 portfolio-symbol-field-title">
+                                <div style="width:100%;float:left;">Apertura</div>
+                                <div style="width:100%;float:left;" class="portfolio-symbol-field-value">@item.Opening</div>
+                            </div>
+                            <div class="col-md-3 col-md-offset-1 portfolio-symbol-field-title">
+                                <div style="width:100%;float:left;">Mínimo</div>
+                                <div style="width:100%;float:left;" class="portfolio-symbol-field-value">@item.Minimum</div>
+                            </div>
+                            <div class="col-md-3 col-md-offset-1 portfolio-symbol-field-title">
+                                <div style="width:100%;float:left;">Maximo</div>
+                                <div style="width:100%;float:left;" class="portfolio-symbol-field-value">@item.Maximum</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+     </div>
+    <script type="text/javascript">
+        var spinner;
+        $(document)
+            .ajaxStart(function () {
+                var target = document.getElementById('spin2');
+                spinner = new Spinner();
+
+                spinner.spin(target);
+            })
+            .ajaxStop(function () {
+                spinner.spin(false);
+            });
+
+    </script>
+

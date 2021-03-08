@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Informes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* PAGE HEADER *@
+    <div class="row text-center" style="background-color:#008a69;
+                                    color:#ffffff;
+                                    font-size:2.0em;
+                                    padding-top: 10px;
+                                    padding-bottom: 10px;
+                                    font-weight:bold;
+                                    margin: 0px;">
+        Comprá Nuestros Últimos Informes
+    </div>
+
+@* MAIN SECTION *@
+<div class="row" style="background-color: #e2e3e7;
+                        background-repeat: no-repeat;
+                        background-size: 100% 100%;
+                        padding-top: 53px;
+                        margin: 0px;">
+    <div class="container">
+        <div class="col-lg-offset-8 col-lg-3"><a target="_blank" href="@Url.Action("OurReportsAndAnalysis","WhoWeAre")" style="font-size:18px;">Mirá informes de muestra acá</a></div>
+        @foreach (ctaCOMMON.Dashboard.DashboardReport item in ViewBag.Informes)
+        {
+            <div class="row" style="margin-bottom:15px;">
+                <div class="col-lg-offset-1 col-lg-8">
+                    <p style="color:#008a69;
+                          font-size:2.0em;
+                          font-weight:bold;">
+                        <span class="glyphicon glyphicon-file" aria-hidden="true"></span>@item.title
+                    </p>
+                    <p>
+                        @item.description
+                    </p>
+                </div>
+                <div class="col-lg-2" style="padding-top:30px;">
+                    <a href="@item.url" target="_blank"
+                       class="btn btn-lg da-link" style="background-color:#ba2b2f;
+                                                              font-size:1.0em;
+                                                              border-radius:9px;
+                                                              color:#ffffff;
+                                                              width:auto;
+                                                              text-transform:uppercase;
+                                                              font-weight:bold;">
+                        Comprar Ahora
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@* CONTACT US *@
+@Html.Partial("~/Views/Shared/Partial/ContactUs.cshtml")
+

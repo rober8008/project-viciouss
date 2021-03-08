@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* PAGE HEADER *@
+<div class="row text-center" style="background-color:#008a69;
+                                    color:#ffffff;
+                                    font-size:2.0em;
+                                    padding-top: 10px;
+                                    padding-bottom: 10px;
+                                    font-weight:bold;
+                                    margin: 0px;
+                                    font-family:lato;">
+    Acerca de Viciouss    
+</div>
+
+@* MAIN SECTION *@
+<div class="row" style="background: url(../../Images/About/bkgimg_AboutUsMain.jpg);
+                        background-repeat: no-repeat;
+                        background-size: 100% 100%;
+                        padding-top: 53px;
+                        margin: 0px;">
+        <div class="col-lg-offset-3 col-lg-3 wow fadeInDown" style="background-color:#ffffff;
+                                                                                height:100%;
+                                                                                padding:10px;
+                                                                                font-size:1.35em;
+                                                                                color:#333333;">  
+                <p style="font-weight:bold;"><span style="letter-spacing:8px;text-transform:uppercase;">Viciouss</span> <span style="vertical-align:super;">________________</span></p>
+                <h3 style="color:#008a69;font-weight:bold;margin-top:0px;font-family:lato;font-size:2.0em;">¿Que es Viciouss?</h3>
+                <p>VICIOUSS es una plataforma que busca otorgarle todas las herramientas que necesita un inversor argentino para invertir en el mercado financiero. </p>
+                <p>Nuestra misión es mejorar la toma de decisión del inversor asi como el seguimiento que realiza sobre sus inversiones, a través de herramientas, alertas de mercado, novedosos informes de mercado y estrategias de inversión, logrando una óptima disciplina de gestión de un portfolio de inversiones financieras.</p>
+                <p>Brindamos todos los canales de información que se necesitan - insights, análisis y herramientas de mercado.</p>
+                <p>Queremos ser tu referencia.</p>
+                <p class="text-right" style="font-weight:bold;">Viciouss, Trends Matter.</p>                
+        </div>    
+</div>
+
+@* JULY PROFILE *@
+<div class="row text-center" style="margin:0px;
+                                    padding:50px 0px;
+                                    background-color:#ffffff;">
+    <div class="col-lg-12">
+        <p class="text-center" style="text-decoration:underline;
+                                  text-transform:uppercase;
+                                  font-weight:bold;
+                                  font-size:1.25em;">Founder</p>
+        <img src="~/Images/About/img_AboutUsJuly.jpg" style="width:300px;
+                                                             height:432px;
+                                                             border-radius:200px;" />
+        <p class="text-center" style="font-size:1.75em;
+                                  font-weight:bold;
+                                  color:#008a69;
+                                  padding-top:20px;">Julián Grau - Founder de Viciouss</p>
+    </div>
+    <div class="col-lg-offset-4 col-lg-4">
+        <p class="text-center" style="font-size:1.3em;">Julián Grau es economista y especialista en finanzas. Ha dedicado su experiencia al mercado financiero como asesor para individuos y PYMES, habiendo trabajado en importantes sociedades de bolsa de Argentina, como InvertirOnline y Puente Hnos.</p>
+        <p class="text-center" style="font-size:1.3em;">Aficionado del mercado, combinando el análisis técnico y fundamental, y especialista en derivados, Julián desarrolla su carrera poniendo foco en la disciplina como medio para llegar a una gestión exitosa y sustentable de un portfolio de inversiones.</p>
+        <p class="text-center" style="font-size:1.3em;">Con Viciouss, busca llevar a la comunidad de inversores y asesores del mercado financiero información profesional y de confianza para que puedan cumplir sus objetivos.</p>
+    </div>    
+</div>
+
+@* AMED PROFILE *@
+<div class="row text-center" style="margin:0px;
+                                    padding:50px 0px;
+                                    background-color:#f1f1f1;">
+    <div class="col-lg-12">
+        <p class="text-center" style="text-decoration:underline;
+                                  text-transform:uppercase;
+                                  font-weight:bold;
+                                  font-size:1.25em;">Founder</p>
+        <img src="~/Images/About/img_AboutUsAmed.JPG" style="width:300px;
+                                                             height:432px;
+                                                             border-radius:200px;" />
+        <p class="text-center" style="font-size:1.75em;
+                                      font-weight:bold;
+                                      color:#008a69;
+                                      padding-top:20px;">Amed Rivero - Founder de Viciouss</p>
+    </div>
+    <div class="col-lg-offset-4 col-lg-4">
+        <p class="text-center" style="font-size:1.3em;">Amed Rivero es un cientifico de la computación y entusiasta del desarrollo de software.</p>
+        <p class="text-center" style="font-size:1.3em;">En su carrera profesional se ha dedicado al diseño e implementación de sistemas orientados a ayudar en la toma de decisiones efectivas.</p>
+        <p class="text-center" style="font-size:1.3em;">Entusiasmando por el mercado de valores, busca poner al servicio de los inversores argentinos toda su experiencia y pericia a través de Viciouss para que estos inversores tengan a su alcance toda la información y herramientas necesarias para que logren su independencia financiera.</p>
+    </div>
+</div>
+
+@* CONTACT US *@
+@Html.Partial("~/Views/Shared/Partial/ContactUs.cshtml")
